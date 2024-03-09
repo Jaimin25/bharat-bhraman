@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 
+import { fonts } from "./fonts";
 import { Providers } from "./providers";
 
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,8 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html
+      lang="en"
+      className={fonts.rubik.variable}
+    >
+      <body className={fonts.rubik.variable}>
         <Providers>{children}</Providers>
       </body>
     </html>
