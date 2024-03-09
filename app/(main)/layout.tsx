@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
+import FooterSection from "@/app/_components/Footer/footer";
+import HeaderSection from "@/app/_components/Header/header";
 import { Providers } from "@/app/_providers/providers";
 import { fonts } from "@/app/_utils/fonts";
-import FooterSection from "@/components/Footer/footer";
-import HeaderSection from "@/components/Header/header";
 import { Box } from "@chakra-ui/react";
 
 import "@/app/globals.css";
