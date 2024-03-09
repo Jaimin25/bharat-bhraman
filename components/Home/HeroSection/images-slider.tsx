@@ -24,6 +24,19 @@ export const HeroSectionImageSlider = ({
 
   useEffect(() => {
     loadImages();
+
+    // autoplay
+    let interval: NodeJS.Timeout;
+    if (autoplay) {
+      interval = setInterval(() => {
+        handleNext();
+      }, 5000);
+    }
+    return () => {
+      clearInterval(interval);
+    };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadImages = () => {
@@ -44,18 +57,6 @@ export const HeroSectionImageSlider = ({
       })
       .catch((error) => console.error("Failed to load images", error));
   };
-  useEffect(() => {
-    // autoplay
-    let interval: NodeJS.Timeout;
-    if (autoplay) {
-      interval = setInterval(() => {
-        handleNext();
-      }, 5000);
-    }
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
 
   const slideVariants = {
     initial: {
