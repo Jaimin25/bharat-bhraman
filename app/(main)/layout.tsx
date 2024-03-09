@@ -27,7 +27,7 @@ export default function RootLayout({
         <Providers>
           <Box className="flex h-full flex-col">
             <HeaderSection />
-            <Box className="my-16 flex-1">{children}</Box>
+            <Box className="flex-1">{children}</Box>
             <FooterSection />
           </Box>
         </Providers>
