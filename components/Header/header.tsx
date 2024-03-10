@@ -1,11 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
 import NextLink from "next/link";
+import { usePathname } from "next/navigation";
 
 import { cn } from "@/app/_utils/cn";
 import { Box, Heading, Link, Stack } from "@chakra-ui/react";
 
 export default function HeaderSection() {
+  const pathname = usePathname();
+
   const [viewAtTop, setViewAtTop] = useState(true);
 
   useEffect(() => {
@@ -19,13 +22,13 @@ export default function HeaderSection() {
     };
     window.addEventListener("scroll", scrollHandler);
     return () => window.removeEventListener("scroll", scrollHandler);
-  }, [viewAtTop]);
+  }, [viewAtTop, pathname]);
 
   return (
     <header
       className={cn(
         " fixed top-0 z-50 h-auto w-full text-white transition",
-        !viewAtTop && "bg-white text-black shadow-md backdrop-blur-lg",
+        !viewAtTop || (pathname !== "/" && "bg-white text-black shadow-md backdrop-blur-lg"),
       )}
     >
       <Box className="flex items-center p-2">
