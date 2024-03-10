@@ -9,26 +9,27 @@ import { Box, Heading, Link, Stack } from "@chakra-ui/react";
 export default function HeaderSection() {
   const pathname = usePathname();
 
-  const [viewAtTop, setViewAtTop] = useState(true);
+  const [viewAtTop, setViewAtTop] = useState(false);
 
   useEffect(() => {
     const scrollHandler = () => {
       const scroll = window.scrollY;
-      if (scroll > 0) {
+      if (scroll > 64) {
         setViewAtTop(false);
       } else {
         setViewAtTop(true);
       }
     };
+    scrollHandler();
     window.addEventListener("scroll", scrollHandler);
     return () => window.removeEventListener("scroll", scrollHandler);
-  }, [viewAtTop, pathname]);
+  }, []);
 
   return (
     <header
       className={cn(
-        " fixed top-0 z-50 h-auto w-full text-white transition",
-        (!viewAtTop || pathname !== "/") && "bg-white text-black shadow-md backdrop-blur-lg",
+        "fixed top-0 z-50 h-auto w-full bg-white text-black shadow-md transition",
+        viewAtTop && pathname === "/" && "bg-transparent text-white shadow-none",
       )}
     >
       <Box className="flex items-center p-2">
