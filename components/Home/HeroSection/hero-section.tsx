@@ -8,6 +8,8 @@ const bgImages = [
   "https://upload.wikimedia.org/wikipedia/commons/1/10/Somanath_mandir_%28cropped%29.jpg",
   "https://upload.wikimedia.org/wikipedia/commons/f/ff/Shimla_Mall.jpg",
   "https://upload.wikimedia.org/wikipedia/commons/a/ad/Munnar_hillstation_kerala.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/6/6e/Auli%2C_India.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/e/e4/Rumtek_Monastery_04.jpg",
 ];
 
 const bounceTransition = {
