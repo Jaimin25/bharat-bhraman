@@ -1,7 +1,8 @@
 "use client";
 
 import NextLink from "next/link";
-import { Field, FieldInputProps, Form, Formik, FormikProps } from "formik";
+import axios from "axios";
+import { Field, FieldInputProps, Form, Formik, FormikHelpers, FormikProps } from "formik";
 
 import { SignUpFormikPropsValue } from "@/typings/auth/sigup-form-props";
 import {
@@ -22,6 +23,24 @@ import {
 } from "@chakra-ui/react";
 
 export default function SignUpComponent() {
+  const handleOnSubmit = async (values: SignUpFormikPropsValue, actions: FormikHelpers<SignUpFormikPropsValue>) => {
+    try {
+      const res = await axios.post("/api/auth/sign-up", {
+        fullname: values.firstName.trim() + " " + values.lastName.trim(),
+        email: values.email,
+        mobileNo: values.mobileNo,
+        password: values.password,
+      });
+
+      const resData = await res.data;
+
+      console.log(resData);
+      actions.setSubmitting(false);
+    } catch (e) {
+      //toast will go here
+    }
+  };
+
   const validateForm = (value: string) => {
     let error;
     if (!value) {
@@ -59,12 +78,7 @@ export default function SignUpComponent() {
             password: "",
             confirmPassword: "",
           }}
-          onSubmit={(values, actions) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              actions.setSubmitting(false);
-            }, 1000);
-          }}
+          onSubmit={handleOnSubmit}
         >
           {(props: FormikProps<SignUpFormikPropsValue>) => (
             <Form>
