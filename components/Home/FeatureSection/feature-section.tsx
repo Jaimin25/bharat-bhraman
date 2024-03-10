@@ -35,7 +35,7 @@ export default function FeatureSection() {
     {
       id: 5,
       content: "North India Tour",
-      className: "h-auto lg:col-span-3",
+      className: "h-full lg:h-[60%] lg:col-span-3",
       thumbnail: North_India_Banner_Image,
     },
   ];
