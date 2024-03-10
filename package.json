@@ -17,6 +17,7 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "@prisma/client": "^5.10.2",
+    "appwrite": "^14.0.0",
     "axios": "^1.6.7",
     "clsx": "^2.1.0",
     "formik": "^2.4.5",
