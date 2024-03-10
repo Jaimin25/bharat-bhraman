@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
+import HeaderSection from "@//components/Header/header";
 import { Providers } from "@/app/_providers/providers";
 import { fonts } from "@/app/_utils/fonts";
 import FooterSection from "@/components/Footer/footer";
-import HeaderSection from "@/components/Header/header";
 import { Box } from "@chakra-ui/react";
 
 import "@/app/globals.css";
@@ -27,7 +27,7 @@ export default function RootLayout({
         <Providers>
           <Box className="flex h-full flex-col">
             <HeaderSection />
-            <Box className="my-16 flex-1">{children}</Box>
+            <Box className="flex-1">{children}</Box>
             <FooterSection />
           </Box>
         </Providers>
