@@ -10,6 +10,26 @@ export default function FooterSection() {
       <Divider />
       <footer>
         <Box className="flex flex-col items-center space-y-4 bg-gray-900 px-4 py-8 text-center text-white">
+          <Stack direction="column">
+            <Heading>Logo</Heading>
+            <Stack
+              justifyContent="center"
+              direction="row"
+            >
+              <Box>
+                <FaFacebook className="h-6 w-6" />
+              </Box>
+              <Box>
+                <FaInstagram className="h-6 w-6" />
+              </Box>
+              <Box>
+                <FaXTwitter className="h-6 w-6" />
+              </Box>
+            </Stack>
+          </Stack>
+          <Box className="w-3/4 lg:w-1/3">
+            <Divider />
+          </Box>
           <Stack>
             <Box>
               <ul className="flex flex-wrap items-center justify-start gap-4  *:flex *:gap-2 sm:justify-center lg:mx-28 lg:px-20">
@@ -35,26 +55,6 @@ export default function FooterSection() {
                 </li>
               </ul>
             </Box>
-          </Stack>
-          <Box className="w-3/4 lg:w-1/3">
-            <Divider />
-          </Box>
-          <Stack direction="column">
-            <Heading>Logo</Heading>
-            <Stack
-              justifyContent="center"
-              direction="row"
-            >
-              <Box>
-                <FaFacebook className="h-6 w-6" />
-              </Box>
-              <Box>
-                <FaInstagram className="h-6 w-6" />
-              </Box>
-              <Box>
-                <FaXTwitter className="h-6 w-6" />
-              </Box>
-            </Stack>
           </Stack>
           <Box className="w-3/4 lg:w-1/3">
             <Divider />
