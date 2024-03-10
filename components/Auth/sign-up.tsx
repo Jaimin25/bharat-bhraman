@@ -34,7 +34,9 @@ export default function SignUpComponent() {
 
       const resData = await res.data;
 
-      console.log(resData);
+      if (resData.statusCode === 200) {
+        console.log("user created");
+      }
       actions.setSubmitting(false);
     } catch (e) {
       //toast will go here
