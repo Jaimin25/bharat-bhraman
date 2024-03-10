@@ -15,7 +15,7 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <div className="mx-auto grid h-full w-full max-w-7xl grid-cols-1 p-10 pt-2 lg:grid-cols-3 ">
+    <div className="mx-auto mb-0 grid h-full w-full grid-cols-1 px-10 pb-0 pt-2 lg:grid-cols-3">
       {cards.map((card, i) => (
         <div
           key={i}
