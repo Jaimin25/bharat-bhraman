@@ -28,7 +28,7 @@ export default function HeaderSection() {
     <header
       className={cn(
         " fixed top-0 z-50 h-auto w-full text-white transition",
-        !viewAtTop || (pathname !== "/" && "bg-white text-black shadow-md backdrop-blur-lg"),
+        (!viewAtTop || pathname !== "/") && "bg-white text-black shadow-md backdrop-blur-lg",
       )}
     >
       <Box className="flex items-center p-2">
