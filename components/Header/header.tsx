@@ -33,7 +33,15 @@ export default function HeaderSection() {
     >
       <Box className="flex items-center p-2">
         <Box className="logo flex-1">
-          <Heading>Logo</Heading>
+          <Link
+            as={NextLink}
+            href="/"
+            _hover={{
+              underline: "none",
+            }}
+          >
+            <Heading>Logo</Heading>
+          </Link>
         </Box>
         <Box>
           <Stack
@@ -54,7 +62,7 @@ export default function HeaderSection() {
             </Link>
             <Link
               as={NextLink}
-              href=""
+              href="/auth/signin"
             >
               SignIn
             </Link>
