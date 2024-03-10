@@ -12,4 +12,5 @@ model User {
   fullname String
   email String @unique
   mobile String
+  emailVerified Boolean @default(false)
 }
