@@ -10,10 +10,16 @@ export async function POST(request: NextRequest) {
 
   const uuid = uuidv4();
 
-  const userExists = await prisma.user.findUnique({
+  const userExists = await prisma.user.findFirst({
     where: {
-      email,
-      mobileNo,
+      OR: [
+        {
+          email,
+        },
+        {
+          mobileNo,
+        },
+      ],
     },
   });
 
