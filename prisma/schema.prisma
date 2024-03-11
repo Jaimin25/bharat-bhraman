@@ -12,5 +12,5 @@ model User {
   fullname      String
   email         String  @unique
   emailVerified Boolean @default(false)
-  mobileNo      Int
+  mobileNo      BigInt
 }
