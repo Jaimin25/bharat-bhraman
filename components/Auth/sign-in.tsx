@@ -1,7 +1,7 @@
 "use client";
 
 import NextLink from "next/link";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { AppwriteException } from "appwrite";
 import { Field, FieldInputProps, Form, Formik, FormikHelpers, FormikProps } from "formik";
 
@@ -26,6 +26,8 @@ import {
 } from "@chakra-ui/react";
 
 export default function SignInComponent() {
+  const router = useRouter();
+
   const { setUser } = useSession();
 
   const { toastError } = useToast();
@@ -38,7 +40,7 @@ export default function SignInComponent() {
         toastError("Error", res.message);
       } else {
         setUser(res as SessionContextProps["sessionUser"]);
-        redirect("/dashboard");
+        router.push("/dashboard");
       }
 
       actions.setSubmitting(false);

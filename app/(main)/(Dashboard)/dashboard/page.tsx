@@ -3,10 +3,10 @@ import { useState } from "react";
 
 import { useSession } from "@/app/_providers/session-provider";
 import { signOutUser } from "@/store/appwriteService";
-import { Button } from "@chakra-ui/react";
+import { Button, Card, CardBody, CardFooter, Text } from "@chakra-ui/react";
 
 export default function Dashboard() {
-  const { setUser } = useSession();
+  const { setUser, sessionUser } = useSession();
   const [signingOut, setSigningOut] = useState(false);
   const handleLogout = () => {
     setSigningOut(true);
@@ -25,13 +25,20 @@ export default function Dashboard() {
   };
   return (
     <div>
-      Hello
-      <Button
-        onClick={handleLogout}
-        isLoading={signingOut}
-      >
-        Logout
-      </Button>
+      <Card>
+        <CardBody>
+          <Text>Logged In: {sessionUser?.name}</Text>
+          <CardFooter>
+            <Button
+              colorScheme="red"
+              onClick={handleLogout}
+              isLoading={signingOut}
+            >
+              Logout
+            </Button>
+          </CardFooter>
+        </CardBody>
+      </Card>
     </div>
   );
 }
