@@ -40,7 +40,9 @@ export default function SignInComponent() {
         toastError("Error", res.message);
       } else {
         setUser(res as SessionContextProps["sessionUser"]);
-        router.push("/dashboard");
+        setTimeout(() => {
+          router.push("/dashboard");
+        }, 1000);
       }
 
       actions.setSubmitting(false);
