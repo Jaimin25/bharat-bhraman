@@ -3,8 +3,10 @@
 import NextLink from "next/link";
 import { Field, FieldInputProps, Form, Formik, FormikHelpers, FormikProps } from "formik";
 
+import { useSession } from "@/app/_providers/session-provider";
 import { signInUser } from "@/store/appwriteService";
 import { SignInFormikPropsValue } from "@/typings/auth/sigin-form-props";
+import { SessionContextProps } from "@/typings/session-provider-props";
 import {
   Box,
   Button,
@@ -21,9 +23,14 @@ import {
 } from "@chakra-ui/react";
 
 export default function SignInComponent() {
+  const { setUser } = useSession();
+
   const handleSubmit = async (values: SignInFormikPropsValue, actions: FormikHelpers<SignInFormikPropsValue>) => {
-    const user = await signInUser(values.email, values.password);
-    console.log(user);
+    const user = (await signInUser(values.email, values.password)) as SessionContextProps["sessionUser"];
+
+    if (user) {
+      setUser(user);
+    }
     actions.setSubmitting(false);
   };
 

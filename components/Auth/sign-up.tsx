@@ -4,6 +4,7 @@ import NextLink from "next/link";
 import axios from "axios";
 import { Field, FieldInputProps, Form, Formik, FormikHelpers, FormikProps } from "formik";
 
+import { useSession } from "@/app/_providers/session-provider";
 import { SignUpFormikPropsValue } from "@/typings/auth/sigup-form-props";
 import {
   Box,
@@ -23,6 +24,7 @@ import {
 } from "@chakra-ui/react";
 
 export default function SignUpComponent() {
+  const { setUser } = useSession();
   const handleOnSubmit = async (values: SignUpFormikPropsValue, actions: FormikHelpers<SignUpFormikPropsValue>) => {
     try {
       const res = await axios.post("/api/auth/sign-up", {
@@ -35,7 +37,9 @@ export default function SignUpComponent() {
       const resData = await res.data;
 
       if (resData.statusCode === 200) {
-        console.log("user created");
+        setUser(resData.user);
+      } else {
+        // error
       }
       actions.setSubmitting(false);
     } catch (e) {
