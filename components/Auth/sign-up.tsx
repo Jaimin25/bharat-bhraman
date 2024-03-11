@@ -1,6 +1,7 @@
 "use client";
 
 import NextLink from "next/link";
+import { redirect } from "next/navigation";
 import axios from "axios";
 import { Field, FieldInputProps, Form, Formik, FormikHelpers, FormikProps } from "formik";
 
@@ -38,6 +39,7 @@ export default function SignUpComponent() {
 
       if (resData.statusCode === 200) {
         setUser(resData.user);
+        redirect("/dashboard");
       } else {
         // error
       }

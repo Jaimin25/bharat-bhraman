@@ -1,6 +1,7 @@
 "use client";
 
 import NextLink from "next/link";
+import { redirect } from "next/navigation";
 import { Field, FieldInputProps, Form, Formik, FormikHelpers, FormikProps } from "formik";
 
 import { useSession } from "@/app/_providers/session-provider";
@@ -30,6 +31,7 @@ export default function SignInComponent() {
 
     if (user) {
       setUser(user);
+      redirect("/dashboard");
     }
     actions.setSubmitting(false);
   };
