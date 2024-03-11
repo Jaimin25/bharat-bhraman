@@ -8,9 +8,9 @@ datasource db {
 }
 
 model User {
-  uid String @id @unique
-  fullname String
-  email String @unique
-  mobileNo Int
+  uid           String  @id @unique
+  fullname      String
+  email         String  @unique
   emailVerified Boolean @default(false)
+  mobileNo      Int
 }
