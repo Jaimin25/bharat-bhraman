@@ -10,8 +10,7 @@ export async function getLoggedInUser() {
   try {
     return await account.get();
   } catch (error) {
-    console.log(error);
-    return null;
+    // error
   }
 }
 
@@ -42,6 +41,14 @@ export async function signInUser(email: string, password: string) {
     } else {
       return "error";
     }
+  } catch (error) {
+    return error;
+  }
+}
+
+export async function signOutUser() {
+  try {
+    return await account.deleteSession("current");
   } catch (error) {
     return error;
   }
