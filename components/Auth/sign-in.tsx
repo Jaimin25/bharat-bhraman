@@ -2,9 +2,11 @@
 
 import NextLink from "next/link";
 import { redirect } from "next/navigation";
+import { AppwriteException } from "appwrite";
 import { Field, FieldInputProps, Form, Formik, FormikHelpers, FormikProps } from "formik";
 
 import { useSession } from "@/app/_providers/session-provider";
+import { useToast } from "@/app/_providers/toast-provider";
 import { signInUser } from "@/store/appwriteService";
 import { SignInFormikPropsValue } from "@/typings/auth/sigin-form-props";
 import { SessionContextProps } from "@/typings/session-provider-props";
@@ -26,14 +28,23 @@ import {
 export default function SignInComponent() {
   const { setUser } = useSession();
 
-  const handleSubmit = async (values: SignInFormikPropsValue, actions: FormikHelpers<SignInFormikPropsValue>) => {
-    const user = (await signInUser(values.email, values.password)) as SessionContextProps["sessionUser"];
+  const { toastError } = useToast();
 
-    if (user) {
-      setUser(user);
-      redirect("/dashboard");
+  const handleSubmit = async (values: SignInFormikPropsValue, actions: FormikHelpers<SignInFormikPropsValue>) => {
+    try {
+      const res = await signInUser(values.email, values.password);
+
+      if (res instanceof AppwriteException) {
+        toastError("Error", res.message);
+      } else {
+        setUser(res as SessionContextProps["sessionUser"]);
+        redirect("/dashboard");
+      }
+
+      actions.setSubmitting(false);
+    } catch (error) {
+      toastError("Error", (error as Error).message);
     }
-    actions.setSubmitting(false);
   };
 
   const validateForm = (value: string) => {
