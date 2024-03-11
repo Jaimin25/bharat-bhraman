@@ -1,7 +1,7 @@
 "use client";
 
 import NextLink from "next/link";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import { Field, FieldInputProps, Form, Formik, FormikHelpers, FormikProps } from "formik";
 
@@ -25,6 +25,7 @@ import {
 } from "@chakra-ui/react";
 
 export default function SignUpComponent() {
+  const router = useRouter();
   const { toastError, toastSuccess } = useToast();
 
   const handleOnSubmit = async (values: SignUpFormikPropsValue, actions: FormikHelpers<SignUpFormikPropsValue>) => {
@@ -41,7 +42,7 @@ export default function SignUpComponent() {
       if (resData.statusCode === 200) {
         toastSuccess("Account Created Successfully!", "Redirecting to SignIn page, please wait!");
         setTimeout(() => {
-          redirect("/auth/signin");
+          router.push("/auth/signin");
         }, 1500);
       } else {
         toastError("Error", resData.message);
