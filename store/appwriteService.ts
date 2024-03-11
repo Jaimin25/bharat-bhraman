@@ -36,7 +36,12 @@ export async function singUpUser(id: string, fullname: string, email: string, pa
 export async function signInUser(email: string, password: string) {
   try {
     const data = await account.createEmailPasswordSession(email, password);
-    return data;
+    if (data) {
+      const userData = await account.get();
+      return userData;
+    } else {
+      return "error";
+    }
   } catch (error) {
     return error;
   }
