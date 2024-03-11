@@ -6,6 +6,7 @@ import axios from "axios";
 import { Field, FieldInputProps, Form, Formik, FormikHelpers, FormikProps } from "formik";
 
 import { useSession } from "@/app/_providers/session-provider";
+import { useToast } from "@/app/_providers/toast-provider";
 import { SignUpFormikPropsValue } from "@/typings/auth/sigup-form-props";
 import {
   Box,
@@ -26,6 +27,8 @@ import {
 
 export default function SignUpComponent() {
   const { setUser } = useSession();
+  const { toastError } = useToast();
+
   const handleOnSubmit = async (values: SignUpFormikPropsValue, actions: FormikHelpers<SignUpFormikPropsValue>) => {
     try {
       const res = await axios.post("/api/auth/sign-up", {
@@ -41,11 +44,11 @@ export default function SignUpComponent() {
         setUser(resData.user);
         redirect("/dashboard");
       } else {
-        // error
+        toastError("Error", resData.message);
       }
       actions.setSubmitting(false);
-    } catch (e) {
-      //toast will go here
+    } catch (error) {
+      toastError("Error", (error as Error).message);
     }
   };
 
