@@ -39,10 +39,10 @@ export default function SignUpComponent() {
       const resData = await res.data;
 
       if (resData.statusCode === 200) {
-        toastSuccess("Account Created Successfully!", "Please login to continue");
+        toastSuccess("Account Created Successfully!", "Redirecting to SignIn page, please wait!");
         setTimeout(() => {
           redirect("/auth/signin");
-        }, 500);
+        }, 1500);
       } else {
         toastError("Error", resData.message);
       }
