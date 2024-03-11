@@ -5,7 +5,6 @@ import { redirect } from "next/navigation";
 import axios from "axios";
 import { Field, FieldInputProps, Form, Formik, FormikHelpers, FormikProps } from "formik";
 
-import { useSession } from "@/app/_providers/session-provider";
 import { useToast } from "@/app/_providers/toast-provider";
 import { SignUpFormikPropsValue } from "@/typings/auth/sigup-form-props";
 import {
@@ -26,8 +25,7 @@ import {
 } from "@chakra-ui/react";
 
 export default function SignUpComponent() {
-  const { setUser } = useSession();
-  const { toastError } = useToast();
+  const { toastError, toastSuccess } = useToast();
 
   const handleOnSubmit = async (values: SignUpFormikPropsValue, actions: FormikHelpers<SignUpFormikPropsValue>) => {
     try {
@@ -41,8 +39,10 @@ export default function SignUpComponent() {
       const resData = await res.data;
 
       if (resData.statusCode === 200) {
-        setUser(resData.user);
-        redirect("/dashboard");
+        toastSuccess("Account Created Successfully!", "Please login to continue");
+        setTimeout(() => {
+          redirect("/auth/signin");
+        }, 500);
       } else {
         toastError("Error", resData.message);
       }

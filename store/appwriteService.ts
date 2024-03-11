@@ -19,13 +19,9 @@ export async function singUpUser(id: string, fullname: string, email: string, pa
     const data = await account.create(id, email, password, fullname);
 
     if (data) {
-      const loginUser = await signInUser(email, password);
-
-      if (loginUser) {
-        return loginUser;
-      } else {
-        return "error";
-      }
+      return data;
+    } else {
+      return "error";
     }
   } catch (error) {
     return error;
