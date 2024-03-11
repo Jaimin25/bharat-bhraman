@@ -1,8 +1,9 @@
 "use client";
 
 import NextLink from "next/link";
-import { Field, FieldInputProps, Form, Formik, FormikProps } from "formik";
+import { Field, FieldInputProps, Form, Formik, FormikHelpers, FormikProps } from "formik";
 
+import { signInUser } from "@/store/appwriteService";
 import { SignInFormikPropsValue } from "@/typings/auth/sigin-form-props";
 import {
   Box,
@@ -20,13 +21,19 @@ import {
 } from "@chakra-ui/react";
 
 export default function SignInComponent() {
-  function validateForm(value: string) {
+  const handleSubmit = async (values: SignInFormikPropsValue, actions: FormikHelpers<SignInFormikPropsValue>) => {
+    const user = await signInUser(values.email, values.password);
+    console.log(user);
+    actions.setSubmitting(false);
+  };
+
+  const validateForm = (value: string) => {
     let error;
     if (!value) {
       error = "Required";
     }
     return error;
-  }
+  };
 
   return (
     <Box className="sign-in-form w-full sm:w-1/2 lg:w-[40%]">
@@ -36,12 +43,7 @@ export default function SignInComponent() {
         </CardHeader>
         <Formik
           initialValues={{ email: "", password: "" }}
-          onSubmit={(values, actions) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              actions.setSubmitting(false);
-            }, 1000);
-          }}
+          onSubmit={handleSubmit}
         >
           {(props: FormikProps<SignInFormikPropsValue>) => (
             <Form>
