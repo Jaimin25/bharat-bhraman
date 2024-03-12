@@ -40,7 +40,6 @@ export default function SessionProvider({ children }: { children: React.ReactNod
   }, []);
 
   useEffect(() => {
-    setIsFetching(true);
     const fetchSession = async () => {
       const session = await getLoggedInUser();
       if (!session) {
@@ -49,6 +48,7 @@ export default function SessionProvider({ children }: { children: React.ReactNod
         return;
       }
       setIsAuthSession(true);
+      setIsFetching(true);
       fetchUser(session as SessionContextProps["sessionUser"]);
       setSessionUser(session as SessionContextProps["sessionUser"]);
     };
