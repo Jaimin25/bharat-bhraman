@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import { useSession } from "@/app/_providers/session-provider";
@@ -11,6 +12,10 @@ export default function RootDashboardLayout({ children }: { children: React.Reac
 
   const router = useRouter();
 
+  useEffect(() => {
+    if (!isAuthSession) return router.push("/auth/signin");
+  }, [router, isAuthSession]);
+
   if (isFetching) {
     return (
       <Box className="mt-14 flex h-full justify-center bg-black/5 p-4">
@@ -18,8 +23,6 @@ export default function RootDashboardLayout({ children }: { children: React.Reac
       </Box>
     );
   }
-
-  if (!isAuthSession) return router.push("/auth/signin");
 
   return <Box className="mt-14 flex h-full justify-center bg-black/5 p-4">{children}</Box>;
 }

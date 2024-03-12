@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import { useSession } from "@/app/_providers/session-provider";
@@ -9,7 +10,9 @@ export default function RootAuthLayout({ children }: { children: React.ReactNode
   const router = useRouter();
   const { isAuthSession } = useSession();
 
-  if (isAuthSession) return router.push("/dashboard");
+  useEffect(() => {
+    if (isAuthSession) return router.push("/dashboard");
+  }, [isAuthSession, router]);
 
   return <Box className="mt-14 flex h-full justify-center bg-black/5 p-4">{children}</Box>;
 }
