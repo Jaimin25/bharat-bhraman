@@ -1,15 +1,17 @@
 "use client";
 
 import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { Models } from "appwrite";
 import axios from "axios";
 
-import { getLoggedInUser } from "@/store/appwriteService";
+import { getJWT, getLoggedInUser } from "@/store/appwriteService";
 import { SessionContextProps } from "@/typings/session-provider-props";
 
 const SessionContext = createContext<SessionContextProps>({
   isAuthSession: false,
   isFetching: false,
   sessionUser: null,
+  userJWT: null,
   setUser: () => {},
 });
 
@@ -18,16 +20,18 @@ export const useSession = () => {
 };
 
 export default function SessionProvider({ children }: { children: React.ReactNode }) {
+  const [userJWT, setUserJWT] = useState<SessionContextProps["userJWT"]>(null);
   const [isAuthSession, setIsAuthSession] = useState<boolean>(false);
 
   const [isFetching, setIsFetching] = useState<boolean>(false);
 
   const [sessionUser, setSessionUser] = useState<SessionContextProps["sessionUser"] | null>(null);
 
-  const fetchUser = useCallback(async (session: SessionContextProps["sessionUser"]) => {
+  const fetchUser = useCallback(async (session: SessionContextProps["sessionUser"], jwt: Models.Jwt) => {
     const res = await axios.post("/api/user/fetch-details", {
       uid: session?.$id,
       email: session?.email,
+      jwt: jwt,
     });
 
     const resData = res.data;
@@ -51,29 +55,32 @@ export default function SessionProvider({ children }: { children: React.ReactNod
         setSessionUser(null);
         return;
       }
+      const jwt = (await getJWT()) as Models.Jwt;
+      setUserJWT(jwt?.jwt as string);
       setIsAuthSession(true);
       setIsFetching(true);
-      fetchUser(session as SessionContextProps["sessionUser"]);
+      fetchUser(session as SessionContextProps["sessionUser"], jwt);
       setSessionUser(session as SessionContextProps["sessionUser"]);
     })();
   }, [fetchUser]);
 
   const setUser = useCallback(
-    (user: SessionContextProps["sessionUser"] | null) => {
+    async (user: SessionContextProps["sessionUser"] | null) => {
       if (!user) {
         setIsAuthSession(false);
         setSessionUser(null);
         return;
       }
+      const jwt = (await getJWT()) as Models.Jwt;
       setIsAuthSession(true);
       setIsFetching(true);
-      fetchUser(user as SessionContextProps["sessionUser"]);
+      fetchUser(user as SessionContextProps["sessionUser"], jwt);
     },
     [fetchUser],
   );
 
   return (
-    <SessionContext.Provider value={{ sessionUser, setUser, isFetching, isAuthSession }}>
+    <SessionContext.Provider value={{ sessionUser, setUser, isFetching, isAuthSession, userJWT }}>
       {children}
     </SessionContext.Provider>
   );

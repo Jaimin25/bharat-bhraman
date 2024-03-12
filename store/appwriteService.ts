@@ -14,6 +14,14 @@ export async function getLoggedInUser() {
   }
 }
 
+export async function getJWT() {
+  try {
+    return await account.createJWT();
+  } catch (error) {
+    return error;
+  }
+}
+
 export async function singUpUser(id: string, fullname: string, email: string, password: string) {
   try {
     const data = await account.create(id, email, password, fullname);
