@@ -10,7 +10,7 @@ import { Box, Heading, Link, Stack } from "@chakra-ui/react";
 export default function HeaderSection() {
   const pathname = usePathname();
 
-  const { sessionUser } = useSession();
+  const { isAuthSession } = useSession();
 
   const [viewAtTop, setViewAtTop] = useState(false);
 
@@ -64,7 +64,7 @@ export default function HeaderSection() {
             >
               Contact Us
             </Link>
-            {sessionUser ? (
+            {isAuthSession ? (
               <Link
                 as={NextLink}
                 href="/dashboard"
