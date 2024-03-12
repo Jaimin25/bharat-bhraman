@@ -7,6 +7,7 @@ import { getLoggedInUser } from "@/store/appwriteService";
 import { SessionContextProps } from "@/typings/session-provider-props";
 
 const SessionContext = createContext<SessionContextProps>({
+  isAuthSession: false,
   isFetching: false,
   sessionUser: null,
   setUser: () => {},
@@ -17,6 +18,8 @@ export const useSession = () => {
 };
 
 export default function SessionProvider({ children }: { children: React.ReactNode }) {
+  const [isAuthSession, setIsAuthSession] = useState<boolean>(false);
+
   const [isFetching, setIsFetching] = useState<boolean>(false);
 
   const [sessionUser, setSessionUser] = useState<SessionContextProps["sessionUser"] | null>(null);
@@ -41,9 +44,11 @@ export default function SessionProvider({ children }: { children: React.ReactNod
     const fetchSession = async () => {
       const session = await getLoggedInUser();
       if (!session) {
+        setIsAuthSession(false);
         setSessionUser(null);
         return;
       }
+      setIsAuthSession(true);
       fetchUser(session as SessionContextProps["sessionUser"]);
       setSessionUser(session as SessionContextProps["sessionUser"]);
     };
@@ -53,14 +58,20 @@ export default function SessionProvider({ children }: { children: React.ReactNod
   const setUser = useCallback(
     (user: SessionContextProps["sessionUser"] | null) => {
       if (!user) {
+        setIsAuthSession(false);
         setSessionUser(null);
         return;
       }
+      setIsAuthSession(true);
       setIsFetching(true);
       fetchUser(user as SessionContextProps["sessionUser"]);
     },
     [fetchUser],
   );
 
-  return <SessionContext.Provider value={{ sessionUser, setUser, isFetching }}>{children}</SessionContext.Provider>;
+  return (
+    <SessionContext.Provider value={{ sessionUser, setUser, isFetching, isAuthSession }}>
+      {children}
+    </SessionContext.Provider>
+  );
 }
