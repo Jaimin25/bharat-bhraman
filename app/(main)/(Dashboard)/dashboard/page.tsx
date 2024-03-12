@@ -3,7 +3,19 @@ import { useState } from "react";
 
 import { useSession } from "@/app/_providers/session-provider";
 import { signOutUser } from "@/store/appwriteService";
-import { Button, Card, CardBody, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Heading,
+  Input,
+  InputGroup,
+  InputLeftAddon,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 
 export default function Dashboard() {
   const { setUser, sessionUser } = useSession();
@@ -24,19 +36,43 @@ export default function Dashboard() {
     })();
   };
   return (
-    <div>
+    <Box className="w-full sm:w-2/3 lg:w-[35%]">
       <Card>
+        <CardHeader>
+          <Heading size="md">Account Details</Heading>
+        </CardHeader>
         <CardBody>
-          <Text>Logged In: {sessionUser?.name}</Text>
-          <Button
-            colorScheme="red"
-            onClick={handleLogout}
-            isLoading={signingOut}
+          <Stack
+            spacing="16px"
+            className="*:space-y-1"
           >
-            Logout
-          </Button>
+            <Box>
+              <Text className="font-medium">Full Name</Text>
+              <Input value={sessionUser?.name} />
+            </Box>
+            <Box>
+              <Text className="font-medium">Email</Text>
+              <Input value={sessionUser?.email} />
+            </Box>
+            <Box>
+              <Text className="font-medium">Mobile Number</Text>
+              <InputGroup>
+                <InputLeftAddon>
+                  <Text>+91</Text>
+                </InputLeftAddon>
+                <Input value={sessionUser?.phone} />
+              </InputGroup>
+            </Box>
+            <Button
+              colorScheme="red"
+              onClick={handleLogout}
+              isLoading={signingOut}
+            >
+              Logout
+            </Button>
+          </Stack>
         </CardBody>
       </Card>
-    </div>
+    </Box>
   );
 }
