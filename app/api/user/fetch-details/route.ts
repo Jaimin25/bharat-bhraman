@@ -1,9 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { prisma } from "@/app/_utils/db";
+import { validateUser } from "@/app/api/lib/validate-user";
 
 export async function POST(req: NextRequest) {
-  const { uid, email } = await req.json();
+  const { uid, email, jwt } = await req.json();
+
+  const authenticatedUser = await validateUser(jwt.jwt);
+
+  if (!authenticatedUser) {
+    return NextResponse.json({ statusCode: 401, message: "Uauthorized!" });
+  }
 
   const user = await prisma.user.findFirst({
     where: {
