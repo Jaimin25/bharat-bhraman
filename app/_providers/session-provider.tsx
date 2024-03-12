@@ -1,7 +1,6 @@
 "use client";
 
 import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
-import { Models } from "appwrite";
 import axios from "axios";
 
 import { getLoggedInUser } from "@/store/appwriteService";
@@ -17,18 +16,20 @@ export const useSession = () => {
 };
 
 export default function SessionProvider({ children }: { children: React.ReactNode }) {
-  const [sessionUser, setSessionUser] = useState<Models.User<Models.Preferences> | null>(null);
+  const [sessionUser, setSessionUser] = useState<SessionContextProps["sessionUser"] | null>(null);
 
-  const fetchUser = useCallback(async (session: Models.User<Models.Preferences>) => {
+  const fetchUser = useCallback(async (session: SessionContextProps["sessionUser"]) => {
     const res = await axios.post("/api/user/fetch-details", {
-      uid: session.$id,
-      email: session.email,
+      uid: session?.$id,
+      email: session?.email,
     });
 
     const resData = res.data;
 
     if (resData.statusCode === 200) {
-      setSessionUser((session = { ...session, phone: resData.userDetails.mobileNo }));
+      setSessionUser(
+        (session = { ...session, phone: resData.userDetails.mobileNo } as SessionContextProps["sessionUser"]),
+      );
     }
   }, []);
 
@@ -39,19 +40,19 @@ export default function SessionProvider({ children }: { children: React.ReactNod
         setSessionUser(null);
         return;
       }
-      fetchUser(session as Models.User<Models.Preferences>);
+      fetchUser(session as SessionContextProps["sessionUser"]);
       setSessionUser(session as SessionContextProps["sessionUser"]);
     };
     fetchSession();
   }, [fetchUser]);
 
   const setUser = useCallback(
-    (user: Models.User<Models.Preferences> | null) => {
+    (user: SessionContextProps["sessionUser"] | null) => {
       if (!user) {
         setSessionUser(null);
         return;
       }
-      fetchUser(user as Models.User<Models.Preferences>);
+      fetchUser(user as SessionContextProps["sessionUser"]);
     },
     [fetchUser],
   );
