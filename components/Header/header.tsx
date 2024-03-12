@@ -67,7 +67,7 @@ export default function HeaderSection() {
             {isAuthSession ? (
               <Link
                 as={NextLink}
-                href="/dashboard"
+                href="/user/dashboard"
               >
                 Dashboard
               </Link>

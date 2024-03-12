@@ -11,7 +11,7 @@ export default function RootAuthLayout({ children }: { children: React.ReactNode
   const { isAuthSession } = useSession();
 
   useEffect(() => {
-    if (isAuthSession) return router.push("/dashboard");
+    if (isAuthSession) return router.push("/user/dashboard");
   }, [isAuthSession, router]);
 
   return <Box className="mt-14 flex h-full justify-center bg-black/5 p-4">{children}</Box>;

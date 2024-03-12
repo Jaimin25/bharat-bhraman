@@ -41,7 +41,7 @@ export default function SignInComponent() {
       } else {
         setUser(res as SessionContextProps["sessionUser"]);
         setTimeout(() => {
-          router.push("/dashboard");
+          router.push("/user/dashboard");
         }, 1000);
       }
 
