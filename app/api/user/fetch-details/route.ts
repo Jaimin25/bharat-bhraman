@@ -12,6 +12,7 @@ export async function POST(req: NextRequest) {
     },
     select: {
       mobileNo: true,
+      emailVerified: true,
     },
   });
 
@@ -21,7 +22,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       statusCode: 200,
       message: "User Found!",
-      userDetails: { uid, email, mobileNo },
+      userDetails: { uid, email, emailVerified: user.emailVerified, mobileNo },
     });
   } else {
     return NextResponse.json({ statusCode: 404, message: "No User Found!" });
