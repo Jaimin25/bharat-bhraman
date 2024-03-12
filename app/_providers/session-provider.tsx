@@ -40,7 +40,7 @@ export default function SessionProvider({ children }: { children: React.ReactNod
   }, []);
 
   useEffect(() => {
-    const fetchSession = async () => {
+    (async () => {
       const session = await getLoggedInUser();
       if (!session) {
         setIsAuthSession(false);
@@ -51,8 +51,7 @@ export default function SessionProvider({ children }: { children: React.ReactNod
       setIsFetching(true);
       fetchUser(session as SessionContextProps["sessionUser"]);
       setSessionUser(session as SessionContextProps["sessionUser"]);
-    };
-    fetchSession();
+    })();
   }, [fetchUser]);
 
   const setUser = useCallback(
