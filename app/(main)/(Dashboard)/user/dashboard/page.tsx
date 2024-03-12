@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useSession } from "@/app/_providers/session-provider";
 import { signOutUser } from "@/store/appwriteService";
 import {
+  Badge,
   Box,
   Button,
   Card,
@@ -51,7 +52,10 @@ export default function Dashboard() {
               <Input value={sessionUser?.name} />
             </Box>
             <Box>
-              <Text className="font-medium">Email</Text>
+              <Box className="flex items-center gap-2">
+                <Text className="font-medium">Email</Text>
+                {!sessionUser?.emailVerification && <Badge colorScheme="red">Email unverified</Badge>}
+              </Box>
               <Input value={sessionUser?.email} />
             </Box>
             <Box>

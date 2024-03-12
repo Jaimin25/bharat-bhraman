@@ -34,7 +34,11 @@ export default function SessionProvider({ children }: { children: React.ReactNod
     setIsFetching(false);
     if (resData.statusCode === 200) {
       setSessionUser(
-        (session = { ...session, phone: resData.userDetails.mobileNo } as SessionContextProps["sessionUser"]),
+        (session = {
+          ...session,
+          phone: resData.userDetails.mobileNo,
+          emailVerification: resData.emailVerified,
+        } as SessionContextProps["sessionUser"]),
       );
     }
   }, []);
