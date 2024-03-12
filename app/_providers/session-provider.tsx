@@ -37,7 +37,7 @@ export default function SessionProvider({ children }: { children: React.ReactNod
         (session = {
           ...session,
           phone: resData.userDetails.mobileNo,
-          emailVerification: resData.emailVerified,
+          emailVerification: resData.userDetails.emailVerified,
         } as SessionContextProps["sessionUser"]),
       );
     }
