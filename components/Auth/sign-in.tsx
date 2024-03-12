@@ -60,7 +60,7 @@ export default function SignInComponent() {
   };
 
   return (
-    <Box className="sign-in-form w-full sm:w-1/2 lg:w-[40%]">
+    <Box className="sign-in-form w-full sm:w-2/3 lg:w-[35%]">
       <Card>
         <CardHeader>
           <Heading size="lg">Sign In</Heading>
