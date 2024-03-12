@@ -8,13 +8,13 @@ import { theme } from "../_utils/theme";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <SessionProvider>
-      <ChakraProvider
-        theme={theme}
-        toastOptions={{ defaultOptions: { position: "top-right" } }}
-      >
-        <ToastProvider>{children}</ToastProvider>
-      </ChakraProvider>
-    </SessionProvider>
+    <ChakraProvider
+      theme={theme}
+      toastOptions={{ defaultOptions: { position: "top-right" } }}
+    >
+      <ToastProvider>
+        <SessionProvider>{children}</SessionProvider>
+      </ToastProvider>
+    </ChakraProvider>
   );
 }

@@ -7,6 +7,8 @@ import axios from "axios";
 import { getJWT, getLoggedInUser } from "@/store/appwriteService";
 import { SessionContextProps } from "@/typings/session-provider-props";
 
+import { useToast } from "./toast-provider";
+
 const SessionContext = createContext<SessionContextProps>({
   isAuthSession: false,
   isFetching: false,
@@ -20,6 +22,8 @@ export const useSession = () => {
 };
 
 export default function SessionProvider({ children }: { children: React.ReactNode }) {
+  const { toastError } = useToast();
+
   const [userJWT, setUserJWT] = useState<SessionContextProps["userJWT"]>(null);
   const [isAuthSession, setIsAuthSession] = useState<boolean>(false);
 
@@ -27,25 +31,32 @@ export default function SessionProvider({ children }: { children: React.ReactNod
 
   const [sessionUser, setSessionUser] = useState<SessionContextProps["sessionUser"] | null>(null);
 
-  const fetchUser = useCallback(async (session: SessionContextProps["sessionUser"], jwt: Models.Jwt) => {
-    const res = await axios.post("/api/user/fetch-details", {
-      uid: session?.$id,
-      email: session?.email,
-      jwt: jwt,
-    });
+  const fetchUser = useCallback(
+    async (session: SessionContextProps["sessionUser"], jwt: Models.Jwt) => {
+      try {
+        const res = await axios.post("/api/user/fetch-details", {
+          uid: session?.$id,
+          email: session?.email,
+          jwt: jwt,
+        });
 
-    const resData = res.data;
-    setIsFetching(false);
-    if (resData.statusCode === 200) {
-      setSessionUser(
-        (session = {
-          ...session,
-          phone: resData.userDetails.mobileNo,
-          emailVerification: resData.userDetails.emailVerified,
-        } as SessionContextProps["sessionUser"]),
-      );
-    }
-  }, []);
+        const resData = res.data;
+        setIsFetching(false);
+        if (resData.statusCode === 200) {
+          setSessionUser(
+            (session = {
+              ...session,
+              phone: resData.userDetails.mobileNo,
+              emailVerification: resData.userDetails.emailVerified,
+            } as SessionContextProps["sessionUser"]),
+          );
+        }
+      } catch (error) {
+        toastError("Error", (error as Error).message);
+      }
+    },
+    [toastError],
+  );
 
   useEffect(() => {
     (async () => {
