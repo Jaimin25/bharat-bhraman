@@ -32,7 +32,7 @@ export default function SessionProvider({ children }: { children: React.ReactNod
   const [sessionUser, setSessionUser] = useState<SessionContextProps["sessionUser"] | null>(null);
 
   const fetchUser = useCallback(
-    async (session: SessionContextProps["sessionUser"], jwt: Models.Jwt) => {
+    async (session: SessionContextProps["sessionUser"], jwt: string) => {
       try {
         const res = await axios.post("/api/user/fetch-details", {
           uid: session?.$id,
@@ -52,11 +52,30 @@ export default function SessionProvider({ children }: { children: React.ReactNod
           );
         }
       } catch (error) {
+        setIsFetching(false);
         toastError("Error", (error as Error).message);
       }
     },
     [toastError],
   );
+
+  const fetchJWT = useCallback(async () => {
+    try {
+      let jwToken = localStorage.getItem("token");
+
+      if (!jwToken) {
+        const jwt = (await getJWT()) as Models.Jwt;
+        if (jwt?.jwt) {
+          localStorage.setItem("token", jwt?.jwt as string);
+          jwToken = jwt?.jwt;
+        }
+      }
+
+      return jwToken;
+    } catch (error) {
+      toastError("Error", (error as Error).message);
+    }
+  }, [toastError]);
 
   useEffect(() => {
     (async () => {
@@ -66,28 +85,30 @@ export default function SessionProvider({ children }: { children: React.ReactNod
         setSessionUser(null);
         return;
       }
-      const jwt = (await getJWT()) as Models.Jwt;
-      setUserJWT(jwt?.jwt as string);
+      const jwt = await fetchJWT();
+      setUserJWT(jwt as string);
       setIsAuthSession(true);
       setIsFetching(true);
-      fetchUser(session as SessionContextProps["sessionUser"], jwt);
+      fetchUser(session as SessionContextProps["sessionUser"], jwt as string);
       setSessionUser(session as SessionContextProps["sessionUser"]);
     })();
-  }, [fetchUser]);
+  }, [fetchUser, fetchJWT]);
 
   const setUser = useCallback(
     async (user: SessionContextProps["sessionUser"] | null) => {
       if (!user) {
+        localStorage.removeItem("token");
         setIsAuthSession(false);
         setSessionUser(null);
         return;
       }
-      const jwt = (await getJWT()) as Models.Jwt;
+      const jwt = await fetchJWT();
+      setUserJWT(jwt as string);
       setIsAuthSession(true);
       setIsFetching(true);
-      fetchUser(user as SessionContextProps["sessionUser"], jwt);
+      fetchUser(user as SessionContextProps["sessionUser"], jwt as string);
     },
-    [fetchUser],
+    [fetchUser, fetchJWT],
   );
 
   return (
