@@ -4,7 +4,13 @@ import TourPackageCard from "../Cards/tour-package-card";
 
 export default function PackagesList() {
   return (
-    <Box className="grid grid-cols-3 gap-4">
+    <Box className="grid h-full flex-1 grid-cols-2 gap-4">
+      <TourPackageCard />
+      <TourPackageCard />
+      <TourPackageCard />
+      <TourPackageCard />
+      <TourPackageCard />
+      <TourPackageCard />
       <TourPackageCard />
       <TourPackageCard />
     </Box>

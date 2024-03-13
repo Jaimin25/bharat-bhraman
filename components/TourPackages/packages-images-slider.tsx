@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/app/_utils/cn";
 import { HeroSectionImageSliderProps } from "@/typings/hero-section-image-slider-props";
 
-export const HeroSectionImageSlider = ({
+export const PackagesImageSlider = ({
   images,
   children,
   overlay = true,
