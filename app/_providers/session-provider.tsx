@@ -61,17 +61,16 @@ export default function SessionProvider({ children }: { children: React.ReactNod
 
   const fetchJWT = useCallback(async () => {
     try {
-      let jwToken = localStorage.getItem("token");
+      // let jwToken = localStorage.getItem("token");
 
-      if (!jwToken) {
-        const jwt = (await getJWT()) as Models.Jwt;
-        if (jwt?.jwt) {
-          localStorage.setItem("token", jwt?.jwt as string);
-          jwToken = jwt?.jwt;
-        }
-      }
-
-      return jwToken;
+      // if (!jwToken) {
+      //   if (jwt?.jwt) {
+      //     localStorage.setItem("token", jwt?.jwt as string);
+      //     jwToken = jwt?.jwt;
+      //   }
+      // }
+      const jwToken = (await getJWT()) as Models.Jwt;
+      return jwToken.jwt;
     } catch (error) {
       toastError("Error", (error as Error).message);
     }
