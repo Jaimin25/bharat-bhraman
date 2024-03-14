@@ -54,7 +54,7 @@ export default function HeaderSection() {
           >
             <Link
               as={NextLink}
-              href=""
+              href="/tour_packages"
             >
               Packages
             </Link>

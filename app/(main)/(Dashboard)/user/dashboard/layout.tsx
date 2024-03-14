@@ -18,11 +18,11 @@ export default function RootDashboardLayout({ children }: { children: React.Reac
 
   if (isFetching) {
     return (
-      <Box className="mt-14 flex h-full justify-center bg-black/5 p-4">
+      <Box className="flex h-full justify-center bg-black/5 p-4">
         <UserDashboardSkeleton />
       </Box>
     );
   }
 
-  return <Box className="mt-14 flex h-full justify-center bg-black/5 p-4">{children}</Box>;
+  return <Box className="flex h-full justify-center bg-black/5 p-4">{children}</Box>;
 }
