@@ -4,7 +4,7 @@ import TourPackageCard from "../Cards/tour-package-card";
 
 export default function PackagesList() {
   return (
-    <Box className="grid h-full flex-1 grid-cols-2 gap-4">
+    <Box className="grid h-full flex-1 grid-cols-1 gap-4 md:grid-cols-2">
       <TourPackageCard
         images={[
           "https://upload.wikimedia.org/wikipedia/commons/9/90/Gir_lion-Gir_forest%2Cjunagadh%2Cgujarat%2Cindia.jpeg",

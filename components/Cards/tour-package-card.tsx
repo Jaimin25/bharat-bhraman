@@ -43,7 +43,7 @@ export default function TourPackageCard({ images }: { images: string[] }) {
               </Box>
             </Box>
             <Divider />
-            <Box className="flex items-center justify-between gap-2 px-5 *:flex *:flex-col *:items-center *:text-sm">
+            <Box className="flex items-center justify-between gap-2 *:flex *:flex-col *:items-center *:text-sm sm:px-5">
               <Box>
                 <FaHotel />
                 <Text>Hotel</Text>

@@ -4,7 +4,7 @@ import { Box, Card, CardBody, Heading, Input, InputGroup, InputLeftAddon, Stack,
 
 export default function TourPackgesSidebar() {
   return (
-    <Box className="w-1/4">
+    <Box className="w-full lg:w-1/4">
       <Card>
         <CardBody>
           <Stack gap="14px">
