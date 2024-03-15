@@ -1,6 +1,6 @@
 import { FaSearch } from "react-icons/fa";
 
-import { Box, Card, CardBody, Heading, Input, InputGroup, InputLeftAddon, Stack, Text } from "@chakra-ui/react";
+import { Box, Card, CardBody, Heading, Input, InputGroup, InputLeftAddon, Select, Stack, Text } from "@chakra-ui/react";
 
 export default function TourPackgesSidebar() {
   return (
@@ -22,6 +22,13 @@ export default function TourPackgesSidebar() {
                   roundedLeft={"none"}
                 />
               </InputGroup>
+            </Box>
+            <Box className="space-y-2">
+              <Text>Sort</Text>
+              <Select>
+                <option>Lowest to highest</option>
+                <option>Highest to lowest</option>
+              </Select>
             </Box>
             <Box className="space-y-2">
               <Text>Budget</Text>
