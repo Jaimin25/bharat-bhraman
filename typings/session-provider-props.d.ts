@@ -4,6 +4,6 @@ export interface SessionContextProps {
   isAuthSession: boolean;
   isFetching: boolean;
   sessionUser: Models.User<Models.Preferences> | null;
-  userJWT: string | null;
+  currentSession: string | null;
   setUser: (user: Models.User<Models.Preferences> | null) => void;
 }

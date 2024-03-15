@@ -14,9 +14,9 @@ export async function getLoggedInUser() {
   }
 }
 
-export async function getJWT() {
+export async function getCurrentSession() {
   try {
-    return await account.createJWT();
+    return await account.getSession("current");
   } catch (error) {
     return error;
   }

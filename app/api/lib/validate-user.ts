@@ -1,15 +1,15 @@
-import { Account } from "node-appwrite";
+import { Users } from "node-appwrite";
 
 import { getAppwriteClient } from "./appwrite-service";
 
-export async function validateUser(jwt: string) {
-  const client = getAppwriteClient(jwt);
+export async function validateUser(uid: string, sessionId: string) {
+  const client = getAppwriteClient();
+  const user = new Users(client);
+  const userSessions = await user.listSessions(uid);
 
-  const account = new Account(client);
+  const currentSession = userSessions.sessions.some((session) => session.$id === sessionId);
 
-  const user = await account.get();
-
-  if (user) {
+  if (currentSession) {
     return true;
   } else {
     return false;
