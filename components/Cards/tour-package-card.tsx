@@ -34,30 +34,30 @@ export default function TourPackageCard({ images }: { images: string[] }) {
 
             <Box className="flex items-center gap-4 text-sm">
               <Box className="flex items-center gap-1">
-                <FaLocationDot />
+                <FaLocationDot className="h-4 w-4 text-purple-500" />
                 <Text>Location</Text>
               </Box>
               <Box className="flex items-center gap-1">
-                <FaClock />
+                <FaClock className="h-4 w-4 text-indigo-500" />
                 <Text>4 Nights/5 Days</Text>
               </Box>
             </Box>
             <Divider />
             <Box className="flex items-center justify-between gap-2 *:flex *:flex-col *:items-center *:text-sm sm:px-5">
               <Box>
-                <FaHotel />
+                <FaHotel className="h-4 w-4 text-red-500" />
                 <Text>Hotel</Text>
               </Box>
               <Box>
-                <FaBinoculars />
+                <FaBinoculars className="h-4 w-4 text-orange-500" />
                 <Text>Sightseeing</Text>
               </Box>
               <Box>
-                <FaCar />
+                <FaCar className="h-4 w-4 text-sky-500" />
                 <Text>Transport</Text>
               </Box>
               <Box>
-                <GiMeal />
+                <GiMeal className="h-4 w-4 text-teal-500" />
                 <Text>Meal</Text>
               </Box>
             </Box>
