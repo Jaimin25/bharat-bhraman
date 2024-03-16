@@ -1,19 +1,21 @@
 import Image from "next/image";
+import { FaStar } from "react-icons/fa6";
 
 import { Box, Card, CardBody, Heading, ListItem, Stack, Text, UnorderedList } from "@chakra-ui/react";
+import { Package } from "@prisma/client";
 
 import { PackagesImageSlider } from "../../packages-images-slider";
 
-export default function PackageDetailsSection({ images }: { images: string[] }) {
+export default function PackageDetailsSection({ packageDetails }: { packageDetails: Package }) {
   return (
-    <Box className="col-span-2 row-span-2 w-full space-y-4">
+    <Box className="w-full space-y-4 lg:col-span-2 lg:row-span-2">
       <Card>
-        <CardBody>
+        <CardBody padding="0px">
           <Box className="aspect-video">
             <PackagesImageSlider
-              images={images}
+              images={packageDetails.images}
               overlay={false}
-              className="rounded-lg"
+              className="rounded-md"
             >
               {" "}
             </PackagesImageSlider>
@@ -25,16 +27,12 @@ export default function PackageDetailsSection({ images }: { images: string[] }) 
           <Box className="space-y-3">
             <Heading size="md">Package Overview</Heading>
             <Box>
-              <Text>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, vero. Provident libero impedit
-                temporibus, similique ipsum non modi praesentium porro atque accusantium minima autem soluta ducimus
-                cumque! Omnis, aut veritatis?
-              </Text>
+              <Text className="text-sm">{packageDetails.packageDesc}</Text>
             </Box>
           </Box>
         </CardBody>
       </Card>
-      <Box className="grid grid-cols-2 gap-4">
+      <Box className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <Card>
           <CardBody>
             <Heading
@@ -45,11 +43,14 @@ export default function PackageDetailsSection({ images }: { images: string[] }) 
             </Heading>
             <Box className="p-2">
               <UnorderedList>
-                <ListItem>lorem</ListItem>
-                <ListItem>lorem</ListItem>
-                <ListItem>lorem</ListItem>
-                <ListItem>lorem</ListItem>
-                <ListItem>lorem</ListItem>
+                {packageDetails.incluions.map((value, index) => (
+                  <ListItem
+                    key={index}
+                    className="text-sm"
+                  >
+                    {value}
+                  </ListItem>
+                ))}
               </UnorderedList>
             </Box>
           </CardBody>
@@ -64,11 +65,14 @@ export default function PackageDetailsSection({ images }: { images: string[] }) 
             </Heading>
             <Box className="p-2">
               <UnorderedList>
-                <ListItem>lorem</ListItem>
-                <ListItem>lorem</ListItem>
-                <ListItem>lorem</ListItem>
-                <ListItem>lorem</ListItem>
-                <ListItem>lorem</ListItem>
+                {packageDetails.excluions.map((value, index) => (
+                  <ListItem
+                    key={index}
+                    className="text-sm"
+                  >
+                    {value}
+                  </ListItem>
+                ))}
               </UnorderedList>
             </Box>
           </CardBody>
@@ -78,19 +82,28 @@ export default function PackageDetailsSection({ images }: { images: string[] }) 
         <CardBody>
           <Box className="space-y-3">
             <Heading size="md">Hotel Details</Heading>
-            <Box className="flex gap-4">
-              <Image
-                src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Exterior_view_of_Taj_Mahal_Hotel%2C_New_Delhi.jpg"
-                height={100}
-                width={250}
-                alt="hotel"
-                className="rounded-md"
-              />
-              <Text>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa perspiciatis et voluptatibus nesciunt
-                quam, veritatis similique. Deleniti corporis ratione ad at, mollitia eius, vitae nesciunt quasi sequi
-                dolor tempora cupiditate.
-              </Text>
+            <Box className="flex w-full flex-col items-center gap-4 lg:flex-row lg:items-start">
+              <Box className="h-full sm:w-1/3 lg:w-1/2">
+                <Image
+                  src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Exterior_view_of_Taj_Mahal_Hotel%2C_New_Delhi.jpg"
+                  height={500}
+                  width={500}
+                  alt="hotel"
+                  className="rounded-md"
+                />
+              </Box>
+              <Box className="w-full">
+                <Box className="flex items-center justify-between">
+                  <Box>
+                    <Heading size="sm">{packageDetails.hotelDetails[0]}</Heading>
+                  </Box>
+                  <Box className="flex items-center">
+                    {packageDetails.hotelDetails[3]}
+                    <FaStar className="text-amber-500" />
+                  </Box>
+                </Box>
+                <Text className="text-sm">{packageDetails.hotelDetails[2]}</Text>
+              </Box>
             </Box>
           </Box>
         </CardBody>
@@ -101,21 +114,14 @@ export default function PackageDetailsSection({ images }: { images: string[] }) 
             <Heading size="md">Day Wise Iternary</Heading>
             <Box>
               <Stack>
-                <Box>
-                  <Text>Day 1 lorem</Text>
-                </Box>
-                <Box>
-                  <Text>Day 2 lorem</Text>
-                </Box>
-                <Box>
-                  <Text>Day 3 lorem</Text>
-                </Box>
-                <Box>
-                  <Text>Day 4 lorem</Text>
-                </Box>
-                <Box>
-                  <Text>Day 5 lorem</Text>
-                </Box>
+                {packageDetails.iternary.map((values, index) => (
+                  <Box key={index}>
+                    <Box>
+                      <Text className="text-lg font-semibold">Day {index + 1}</Text>
+                      <Text className="text-sm">{values}</Text>
+                    </Box>
+                  </Box>
+                ))}
               </Stack>
             </Box>
           </Box>
