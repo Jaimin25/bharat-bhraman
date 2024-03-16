@@ -25,9 +25,12 @@ model Package {
   duration     String
   locations    String
   available    Boolean
-  includes     String
-  excludes     String
   images       String[]
+  excluions    String[]
+  hotelDetails String[]
+  incluions    String[]
+  iternary     String[]
+  validity     String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @default(now())
 }
