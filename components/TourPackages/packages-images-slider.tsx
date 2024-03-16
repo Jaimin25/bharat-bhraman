@@ -30,7 +30,7 @@ export const PackagesImageSlider = ({
     if (autoplay) {
       interval = setInterval(() => {
         handleNext();
-      }, 3500);
+      }, 5000);
     }
     return () => {
       clearInterval(interval);
