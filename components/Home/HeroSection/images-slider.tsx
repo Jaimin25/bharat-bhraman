@@ -100,7 +100,7 @@ export const HeroSectionImageSlider = ({
             animate="visible"
             exit={"fadeOut"}
             variants={slideVariants}
-            className="image absolute inset-0 aspect-square h-full w-full object-fill object-center"
+            className="image absolute inset-0 aspect-square h-full w-full object-cover md:object-fill md:object-center"
           />
         </AnimatePresence>
       )}
