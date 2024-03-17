@@ -102,7 +102,9 @@ export default function PackageDetailsSection({ packageDetails }: { packageDetai
                     <FaStar className="text-amber-500" />
                   </Box>
                 </Box>
-                <Text className="text-sm">{packageDetails.hotelDetails[2]}</Text>
+                {packageDetails.hotelDetails[2] !== '""' && (
+                  <Text className="text-sm">{packageDetails.hotelDetails[2]}</Text>
+                )}
               </Box>
             </Box>
           </Box>
