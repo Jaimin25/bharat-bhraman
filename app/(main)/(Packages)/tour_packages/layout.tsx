@@ -1,5 +1,3 @@
-"use client";
-
 import { Box } from "@chakra-ui/react";
 
 export default function RootDashboardLayout({ children }: { children: React.ReactNode }) {
