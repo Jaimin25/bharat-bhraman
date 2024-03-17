@@ -1,9 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import NextImage from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { cn } from "@/app/_utils/cn";
 import { HeroSectionImageSliderProps } from "@/typings/hero-section-image-slider-props";
+import { Skeleton } from "@chakra-ui/react";
 
 export const PackagesImageSlider = ({
   images,
@@ -88,6 +90,17 @@ export const PackagesImageSlider = ({
         perspective: "1000px",
       }}
     >
+      {loading && (
+        <Skeleton className="aspect-video w-full">
+          <NextImage
+            src=""
+            alt="img"
+            height={250}
+            width={100}
+            className="h-full w-full"
+          />
+        </Skeleton>
+      )}
       {areImagesLoaded && children}
       {areImagesLoaded && overlay && <div className={cn("absolute inset-0 z-40 bg-black/60", overlayClassName)} />}
 
@@ -100,7 +113,7 @@ export const PackagesImageSlider = ({
             animate="visible"
             exit={"fadeOut"}
             variants={slideVariants}
-            className="image absolute inset-0 aspect-square h-full w-full object-fill object-center"
+            className={"image absolute inset-0 aspect-square h-full w-full object-fill object-center"}
           />
         </AnimatePresence>
       )}

@@ -1,3 +1,4 @@
+import NextLink from "next/link";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaClock } from "react-icons/fa6";
 import { FaIndianRupeeSign } from "react-icons/fa6";
@@ -6,11 +7,25 @@ import { FaBinoculars } from "react-icons/fa6";
 import { FaCar } from "react-icons/fa6";
 import { GiMeal } from "react-icons/gi";
 
-import { Box, Button, Card, CardBody, Divider, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Card, CardBody, Divider, Link, Stack, Text } from "@chakra-ui/react";
 
 import { PackagesImageSlider } from "../TourPackages/packages-images-slider";
 
-export default function TourPackageCard({ images }: { images: string[] }) {
+export default function TourPackageCard({
+  pID,
+  title,
+  price,
+  locations,
+  duration,
+  images,
+}: {
+  pID: string;
+  title: string;
+  price: string;
+  locations: string;
+  duration: string;
+  images: string[];
+}) {
   return (
     <Card>
       <CardBody padding="0px">
@@ -29,17 +44,17 @@ export default function TourPackageCard({ images }: { images: string[] }) {
             paddingTop="0px"
           >
             <Box>
-              <Text>Tour Package Title</Text>
+              <Text>{title}</Text>
             </Box>
 
-            <Box className="flex items-center gap-4 text-sm">
+            <Box className="items-center space-y-2 text-sm">
               <Box className="flex items-center gap-1">
                 <FaLocationDot className="h-4 w-4 text-purple-500" />
-                <Text>Location</Text>
+                <Text>{locations}</Text>
               </Box>
               <Box className="flex items-center gap-1">
                 <FaClock className="h-4 w-4 text-indigo-500" />
-                <Text>4 Nights/5 Days</Text>
+                <Text>{duration}</Text>
               </Box>
             </Box>
             <Divider />
@@ -67,16 +82,21 @@ export default function TourPackageCard({ images }: { images: string[] }) {
                 <Text className="text-sm">Starting from</Text>
                 <Box className="flex items-center">
                   <FaIndianRupeeSign />
-                  <Text className="font-semibold">15000</Text>
+                  <Text className="font-semibold">{price}</Text>
                 </Box>
                 <Text className="text-sm">Per person</Text>
               </Box>
-              <Button
-                colorScheme="green"
-                size="md"
+              <Link
+                as={NextLink}
+                href={`/tour_packages/v/${pID}`}
               >
-                Book
-              </Button>
+                <Button
+                  colorScheme="green"
+                  size="md"
+                >
+                  Book
+                </Button>
+              </Link>
             </Box>
           </Stack>
         </Stack>
