@@ -2,7 +2,15 @@ import { FaClock, FaIndianRupeeSign, FaLocationDot } from "react-icons/fa6";
 
 import { Box, Button, Card, CardBody, Stack, Text } from "@chakra-ui/react";
 
-export default function BookPackageSection() {
+export default function BookPackageSection({
+  amount,
+  duration,
+  location,
+}: {
+  amount: string;
+  duration: string;
+  location: string;
+}) {
   return (
     <Box>
       <Card>
@@ -14,17 +22,17 @@ export default function BookPackageSection() {
                   <Text className="text-sm">Starting from</Text>
                   <Box className="flex items-center">
                     <FaIndianRupeeSign />
-                    <Text className="font-semibold">15000</Text>
+                    <Text className="font-semibold">{amount}</Text>
                   </Box>
                   <Text className="text-sm">Per person</Text>
                 </Box>
                 <Box className="flex items-center gap-1">
                   <FaClock className="h-4 w-4 text-indigo-500" />
-                  <Text>4 Nights/5 Days</Text>
+                  <Text>{duration}</Text>
                 </Box>
                 <Box className="flex items-center gap-1">
                   <FaLocationDot className="h-4 w-4 text-purple-500" />
-                  <Text>Location</Text>
+                  <Text>{location}</Text>
                 </Box>
               </Stack>
             </Box>

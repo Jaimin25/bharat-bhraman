@@ -29,7 +29,11 @@ export default function TourPackageDetailsComponent({ pID }: { pID: string }) {
     <Box className="grid h-full w-full grid-cols-1 gap-4 lg:grid-cols-3">
       <PackageDetailsSection packageDetails={resData as Package} />
       <Box className="cols-span-1 grid gap-4">
-        <BookPackageSection />
+        <BookPackageSection
+          amount={(resData as Package).price}
+          duration={(resData as Package).duration}
+          location={(resData as Package).locations}
+        />
         <PackageReviewSection />
       </Box>
     </Box>
