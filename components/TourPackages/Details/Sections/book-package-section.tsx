@@ -46,7 +46,7 @@ export default function BookPackageSection({
               href={
                 !isAuthSession && !sessionUser
                   ? { pathname: "/auth/signin", query: { redirect: `/tour_packages/v/${pID}` } }
-                  : ""
+                  : `/tour_packages/v/${pID}/book`
               }
             >
               <Button colorScheme="green">Book Now</Button>
