@@ -31,7 +31,7 @@ export default function BookingQueryConfirmModal({
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Booking Query</ModalHeader>
+        <ModalHeader>Thank You!</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Text>
