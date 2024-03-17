@@ -26,13 +26,13 @@ model Package {
   locations    String
   available    Boolean
   images       String[]
-  excluions    String[]
-  incluions    String[]
-  hotelDetails String[]
-  iternary     String[]
-  validity     String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @default(now())
+  excluions    String[]
+  hotelDetails String[]
+  incluions    String[]
+  iternary     String[]
+  validity     String
 }
 
 model BookingQuery {
@@ -43,6 +43,9 @@ model BookingQuery {
   fullname     String
   email        String
   mobileNo     String
+  adults       String
+  child        String
+  infant       String
   status       String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @default(now())
