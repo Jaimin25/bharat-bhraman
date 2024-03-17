@@ -33,12 +33,17 @@ import { BookingQuery, Package } from "@prisma/client";
 export default function PackageBookingComponent({ pID }: { pID: string }) {
   const { toastError } = useToast();
   const { sessionUser, currentSession } = useSession();
-  const { resData, isFetching } = useFetchDetails<Package>("/api/tour_packages/details", pID);
+  const { resData, isFetchingDetails } = useFetchDetails<Package>("/api/tour_packages/details", [
+    {
+      key: "pID",
+      value: pID,
+    },
+  ]);
   const [uuid, setUuid] = useState<string>();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  if (isFetching) {
+  if (isFetchingDetails) {
     return <PackageBookingSkeleton />;
   }
 

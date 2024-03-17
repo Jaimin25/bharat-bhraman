@@ -8,9 +8,9 @@ import { Box } from "@chakra-ui/react";
 import { Package } from "@prisma/client";
 
 export default function TourPackges() {
-  const { isFetching, resData } = useFetchDetails<Package[]>("/api/tour_packages", "");
+  const { isFetchingDetails, resData } = useFetchDetails<Package[]>("/api/tour_packages", [{ key: "", value: "" }]);
 
-  if (isFetching) {
+  if (isFetchingDetails) {
     return (
       <Box className="flex h-auto w-full flex-col gap-4 lg:flex-row lg:gap-0 lg:space-x-4">
         <TourPackgesSidebar />
