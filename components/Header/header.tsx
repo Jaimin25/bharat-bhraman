@@ -31,21 +31,23 @@ export default function HeaderSection() {
   return (
     <header
       className={cn(
-        "fixed top-0 z-50 h-auto w-full bg-white text-black shadow-md transition",
+        "fixed top-0 z-50 h-auto w-full bg-white px-4 text-black shadow transition",
         viewAtTop && pathname === "/" && "bg-transparent text-white shadow-none",
       )}
     >
       <Box className="flex items-center p-2">
         <Box className="logo flex-1">
-          <Link
-            as={NextLink}
-            href="/"
-            _hover={{
-              underline: "none",
-            }}
-          >
-            <Heading>Logo</Heading>
-          </Link>
+          <Heading>
+            <Link
+              as={NextLink}
+              href="/"
+              _hover={{
+                underline: "none",
+              }}
+            >
+              Logo
+            </Link>
+          </Heading>
         </Box>
         <Box>
           <Stack
