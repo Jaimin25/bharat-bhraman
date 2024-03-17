@@ -1,6 +1,7 @@
 "use client";
 
-// import { AppwriteException } from "appwrite";
+import { AppwriteException } from "appwrite";
+import axios from "axios";
 import { Field, FieldInputProps, Form, Formik, FormikHelpers, FormikProps } from "formik";
 import { v4 as uuidv4 } from "uuid";
 
@@ -28,7 +29,7 @@ import { BookingQuery, Package } from "@prisma/client";
 
 export default function PackageBookingComponent({ pID }: { pID: string }) {
   const { toastError } = useToast();
-  const { sessionUser } = useSession();
+  const { sessionUser, currentSession } = useSession();
   const { resData, isFetching } = useFetchDetails<Package>("/api/tour_packages/details", pID);
 
   if (isFetching) {
@@ -38,20 +39,27 @@ export default function PackageBookingComponent({ pID }: { pID: string }) {
   const handleSubmit = async (values: BookingQuery, actions: FormikHelpers<BookingQuery>) => {
     actions.setSubmitting(true);
     try {
-      // const res = await;
-      // if (res instanceof AppwriteException) {
-      //   toastError("Error", res.message);
-      // }
       values.uid = sessionUser?.$id as string;
       values.fullname = sessionUser?.name as string;
       values.email = sessionUser?.email as string;
       values.mobileNo = sessionUser?.phone as string;
 
-      console.log(values);
-      setTimeout(() => {
-        console.log("t");
-        actions.setSubmitting(false);
-      }, 2000);
+      const res = await axios.post("/api/tour_packages/query", {
+        sessionId: currentSession,
+        values,
+      });
+
+      if (res instanceof AppwriteException) {
+        toastError("Error", res.message);
+      }
+
+      actions.setSubmitting(false);
+
+      if (res.data.statusCode === 200) {
+        // s
+      } else {
+        toastError("Error", res.data.message);
+      }
     } catch (error) {
       toastError("Error", (error as Error).message);
     }
@@ -225,7 +233,7 @@ export default function PackageBookingComponent({ pID }: { pID: string }) {
                     <Button
                       className="w-full"
                       colorScheme="green"
-                      isDisabled={props.isSubmitting}
+                      isLoading={props.isSubmitting}
                       type="submit"
                     >
                       Submit
