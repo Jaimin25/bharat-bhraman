@@ -32,9 +32,9 @@ export async function POST(request: NextRequest) {
         fullname: values.fullname,
         email: values.email,
         mobileNo: values.mobileNo,
-        adults: values.adults,
-        child: values.child,
-        infant: values.infant,
+        adults: String(values.adults),
+        child: String(values.child),
+        infant: String(values.infant),
         status: values.status,
       },
     });
