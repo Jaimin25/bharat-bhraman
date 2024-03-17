@@ -1,7 +1,7 @@
 "use client";
 
 import NextLink from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import { Field, FieldInputProps, Form, Formik, FormikHelpers, FormikProps } from "formik";
 
@@ -25,6 +25,10 @@ import {
 } from "@chakra-ui/react";
 
 export default function SignUpComponent() {
+  const searchParams = useSearchParams();
+
+  const redirectUrl = searchParams.get("redirect");
+
   const router = useRouter();
   const { toastError, toastSuccess } = useToast();
 
@@ -42,7 +46,7 @@ export default function SignUpComponent() {
       if (resData.statusCode === 200) {
         toastSuccess("Account Created Successfully!", "Redirecting to SignIn page, please wait!");
         setTimeout(() => {
-          router.push("/auth/signin");
+          router.push(redirectUrl ? `/auth/signin?redirect=${redirectUrl}` : "/auth/signin");
         }, 1500);
       } else {
         toastError("Error", resData.message);
@@ -262,7 +266,16 @@ export default function SignUpComponent() {
                     <Text>
                       Already have an account?{" "}
                       <NextLink
-                        href="/auth/signin"
+                        href={
+                          redirectUrl
+                            ? {
+                                pathname: `/auth/signin`,
+                                query: {
+                                  redirect: redirectUrl,
+                                },
+                              }
+                            : "/auth/signin"
+                        }
                         className="font-semibold text-green-600 underline hover:no-underline"
                       >
                         Sign In
