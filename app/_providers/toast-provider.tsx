@@ -22,7 +22,7 @@ export default function ToastProvider({ children }: { children: React.ReactNode 
       title: title,
       description: message,
       status: "success",
-      duration: 1000,
+      duration: 1500,
     });
   };
 
@@ -31,7 +31,7 @@ export default function ToastProvider({ children }: { children: React.ReactNode 
       title: title,
       description: message,
       status: "error",
-      duration: 1000,
+      duration: 1500,
     });
   };
 

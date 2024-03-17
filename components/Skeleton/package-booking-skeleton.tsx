@@ -21,7 +21,7 @@ export default function PackageBookingSkeleton() {
           <Heading size="md">Query Form</Heading>
           <Stack gap="20px">
             <Box className="space-y-2">
-              <Text>Package Name</Text>
+              <Text fontWeight="medium">Package Name</Text>
               <Skeleton>
                 <Input
                   value={"name"}
@@ -31,19 +31,19 @@ export default function PackageBookingSkeleton() {
             </Box>
             <Box className="flex gap-4 *:space-y-2">
               <Box>
-                <Text>Adults</Text>
+                <Text fontWeight="medium">Adults</Text>
                 <Skeleton>
                   <Input type="number" />
                 </Skeleton>
               </Box>
               <Box>
-                <Text>Child</Text>
+                <Text fontWeight="medium">Child</Text>
                 <Skeleton>
                   <Input type="number" />
                 </Skeleton>
               </Box>
               <Box>
-                <Text>Infant</Text>
+                <Text fontWeight="medium">Infant</Text>
                 <Skeleton>
                   <Input type="number" />
                 </Skeleton>
@@ -51,7 +51,7 @@ export default function PackageBookingSkeleton() {
             </Box>
             <Divider />
             <Box className="space-y-2">
-              <Text>Full Name</Text>
+              <Text fontWeight="medium">Full Name</Text>
               <Skeleton>
                 <Input
                   value={"fullname"}
@@ -60,7 +60,7 @@ export default function PackageBookingSkeleton() {
               </Skeleton>
             </Box>
             <Box className="space-y-2">
-              <Text>Email</Text>
+              <Text fontWeight="medium">Email</Text>
               <Skeleton>
                 <Input
                   value={"email"}
@@ -69,7 +69,7 @@ export default function PackageBookingSkeleton() {
               </Skeleton>
             </Box>
             <Box className="space-y-2">
-              <Text>Mobile No.</Text>
+              <Text fontWeight="medium">Mobile No.</Text>
               <Skeleton>
                 <InputGroup>
                   <InputLeftAddon>

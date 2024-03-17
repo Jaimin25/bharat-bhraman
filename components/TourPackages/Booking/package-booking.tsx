@@ -85,7 +85,7 @@ export default function PackageBookingComponent({ pID }: { pID: string }) {
 
   return (
     <>
-      <Box className="w-full sm:w-2/5">
+      <Box className="w-full sm:w-2/3 lg:w-2/5">
         <Card>
           <Formik
             initialValues={{
@@ -114,7 +114,7 @@ export default function PackageBookingComponent({ pID }: { pID: string }) {
                       <Field name="packageTitle">
                         {({ field, form }: { field: FieldInputProps<string>; form: FormikProps<BookingQuery> }) => (
                           <FormControl isInvalid={!!form.errors.packageTitle && (form.touched.packageTitle as boolean)}>
-                            <FormLabel fontWeight="normal">Package Name</FormLabel>
+                            <FormLabel fontWeight="medium">Package Name</FormLabel>
                             <Input
                               {...field}
                               type="text"
@@ -134,7 +134,7 @@ export default function PackageBookingComponent({ pID }: { pID: string }) {
                         >
                           {({ field, form }: { field: FieldInputProps<string>; form: FormikProps<BookingQuery> }) => (
                             <FormControl isInvalid={!!form.errors.adults && (form.touched.adults as boolean)}>
-                              <FormLabel fontWeight="normal">Adults</FormLabel>
+                              <FormLabel fontWeight="medium">Adults</FormLabel>
                               <Input
                                 {...field}
                                 type="number"
@@ -153,7 +153,7 @@ export default function PackageBookingComponent({ pID }: { pID: string }) {
                         >
                           {({ field, form }: { field: FieldInputProps<string>; form: FormikProps<BookingQuery> }) => (
                             <FormControl isInvalid={!!form.errors.child && (form.touched.child as boolean)}>
-                              <FormLabel fontWeight="normal">Child</FormLabel>
+                              <FormLabel fontWeight="medium">Child</FormLabel>
                               <Input
                                 {...field}
                                 type="number"
@@ -172,7 +172,7 @@ export default function PackageBookingComponent({ pID }: { pID: string }) {
                         >
                           {({ field, form }: { field: FieldInputProps<string>; form: FormikProps<BookingQuery> }) => (
                             <FormControl isInvalid={!!form.errors.infant && (form.touched.infant as boolean)}>
-                              <FormLabel fontWeight="normal">Infant</FormLabel>
+                              <FormLabel fontWeight="medium">Infant</FormLabel>
                               <Input
                                 {...field}
                                 type="number"
@@ -190,7 +190,7 @@ export default function PackageBookingComponent({ pID }: { pID: string }) {
                       <Field name="fullname">
                         {({ field, form }: { field: FieldInputProps<string>; form: FormikProps<BookingQuery> }) => (
                           <FormControl>
-                            <FormLabel fontWeight="normal">Full Name</FormLabel>
+                            <FormLabel fontWeight="medium">Full Name</FormLabel>
                             <Input
                               {...field}
                               type="text"
@@ -206,7 +206,7 @@ export default function PackageBookingComponent({ pID }: { pID: string }) {
                       <Field name="email">
                         {({ field, form }: { field: FieldInputProps<string>; form: FormikProps<BookingQuery> }) => (
                           <FormControl>
-                            <FormLabel fontWeight="normal">Email</FormLabel>
+                            <FormLabel fontWeight="medium">Email</FormLabel>
                             <Input
                               {...field}
                               type="text"
@@ -222,7 +222,7 @@ export default function PackageBookingComponent({ pID }: { pID: string }) {
                       <Field name="mobileNo">
                         {({ field, form }: { field: FieldInputProps<string>; form: FormikProps<BookingQuery> }) => (
                           <FormControl>
-                            <FormLabel fontWeight="normal">Mobile No.</FormLabel>
+                            <FormLabel fontWeight="medium">Mobile No.</FormLabel>
 
                             <InputGroup>
                               <InputLeftAddon>
