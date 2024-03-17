@@ -35,7 +35,7 @@ export default function BookingQueryConfirmModal({
         <ModalCloseButton />
         <ModalBody>
           <Text>
-            Thank you for choosing BharatBhraman for your Holiday Requirement. Your Query Number is{" "}
+            Thank you for choosing Bharat Bhraman Travels for your Holiday Requirement. Your query ID is{" "}
             <span className="font-semibold">{uuid}</span>, One of our travel consultant will revert back to you with the
             best available options with cheapest prices.
           </Text>
