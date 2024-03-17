@@ -42,15 +42,17 @@ export default function BookPackageSection({
                 </Box>
               </Stack>
             </Box>
-            <Link
-              href={
-                !isAuthSession && !sessionUser
-                  ? { pathname: "/auth/signin", query: { redirect: `/tour_packages/v/${pID}` } }
-                  : `/tour_packages/v/${pID}/book`
-              }
-            >
-              <Button colorScheme="green">Book Now</Button>
-            </Link>
+            <Box>
+              <Link
+                href={
+                  !isAuthSession && !sessionUser
+                    ? { pathname: "/auth/signin", query: { redirect: `/tour_packages/v/${pID}` } }
+                    : `/tour_packages/v/${pID}/book`
+                }
+              >
+                <Button colorScheme="green">Book Now</Button>
+              </Link>
+            </Box>
           </Box>
         </CardBody>
       </Card>
