@@ -20,8 +20,8 @@ export default function PackageBookingSkeleton() {
         <CardBody className="space-y-4">
           <Heading size="md">Query Form</Heading>
           <Stack gap="20px">
-            <Box>
-              <Text>Packages Name</Text>
+            <Box className="space-y-2">
+              <Text>Package Name</Text>
               <Skeleton>
                 <Input
                   value={"name"}
@@ -29,9 +29,9 @@ export default function PackageBookingSkeleton() {
                 />
               </Skeleton>
             </Box>
-            <Box className="flex gap-4">
+            <Box className="flex gap-4 *:space-y-2">
               <Box>
-                <Text>Adult</Text>
+                <Text>Adults</Text>
                 <Skeleton>
                   <Input type="number" />
                 </Skeleton>
@@ -50,7 +50,7 @@ export default function PackageBookingSkeleton() {
               </Box>
             </Box>
             <Divider />
-            <Box>
+            <Box className="space-y-2">
               <Text>Full Name</Text>
               <Skeleton>
                 <Input
@@ -59,7 +59,7 @@ export default function PackageBookingSkeleton() {
                 />
               </Skeleton>
             </Box>
-            <Box>
+            <Box className="space-y-2">
               <Text>Email</Text>
               <Skeleton>
                 <Input
@@ -68,7 +68,7 @@ export default function PackageBookingSkeleton() {
                 />
               </Skeleton>
             </Box>
-            <Box>
+            <Box className="space-y-2">
               <Text>Mobile No.</Text>
               <Skeleton>
                 <InputGroup>

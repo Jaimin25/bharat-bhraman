@@ -18,7 +18,7 @@ export default function useFetchDetails<T>(url: string, data: string) {
         const res = await axios.get(url, {
           params: { data },
         });
-        setIsFetching(false);
+        // setIsFetching(false);
 
         if (res.data.statusCode === 200) {
           setResData(res.data.details);
