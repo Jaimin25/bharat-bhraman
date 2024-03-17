@@ -12,9 +12,14 @@ import PackageDetailsSection from "./Sections/package-details-section";
 import PackageReviewSection from "./Sections/package-review-section";
 
 export default function TourPackageDetailsComponent({ pID }: { pID: string }) {
-  const { resData, isFetching } = useFetchDetails<Package>("/api/tour_packages/details", pID);
+  const { resData, isFetchingDetails } = useFetchDetails<Package>("/api/tour_packages/details", [
+    {
+      key: "pID",
+      value: pID,
+    },
+  ]);
 
-  if (isFetching)
+  if (isFetchingDetails)
     return (
       <Box className="grid h-full w-full grid-cols-1 gap-4 lg:grid-cols-3">
         <DetailsSectionSkeleton />
