@@ -1,7 +1,7 @@
 "use client";
 
 import NextLink from "next/link";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { AppwriteException } from "appwrite";
 import { Field, FieldInputProps, Form, Formik, FormikHelpers, FormikProps } from "formik";
 
@@ -26,7 +26,9 @@ import {
 } from "@chakra-ui/react";
 
 export default function SignInComponent() {
-  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const redirectUrl = searchParams.get("redirect");
 
   const { setUser } = useSession();
 
@@ -40,9 +42,6 @@ export default function SignInComponent() {
         toastError("Error", res.message);
       } else {
         setUser(res as SessionContextProps["sessionUser"]);
-        setTimeout(() => {
-          router.push("/user/dashboard");
-        }, 1000);
       }
 
       actions.setSubmitting(false);
@@ -127,7 +126,16 @@ export default function SignInComponent() {
                     <Text>
                       Don&apos;t have an account?{" "}
                       <NextLink
-                        href="/auth/signup"
+                        href={
+                          redirectUrl
+                            ? {
+                                pathname: `/auth/signup`,
+                                query: {
+                                  redirect: redirectUrl,
+                                },
+                              }
+                            : "/auth/signup"
+                        }
                         className="font-semibold text-green-600 underline hover:no-underline"
                       >
                         Sign Up

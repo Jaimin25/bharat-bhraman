@@ -1,16 +1,22 @@
+import Link from "next/link";
 import { FaClock, FaIndianRupeeSign, FaLocationDot } from "react-icons/fa6";
 
+import { useSession } from "@/app/_providers/session-provider";
 import { Box, Button, Card, CardBody, Stack, Text } from "@chakra-ui/react";
 
 export default function BookPackageSection({
+  pID,
   amount,
   duration,
   location,
 }: {
+  pID: string;
   amount: string;
   duration: string;
   location: string;
 }) {
+  const { isAuthSession, sessionUser } = useSession();
+
   return (
     <Box>
       <Card>
@@ -36,7 +42,17 @@ export default function BookPackageSection({
                 </Box>
               </Stack>
             </Box>
-            <Button colorScheme="green">Book Now</Button>
+            <Box>
+              <Link
+                href={
+                  !isAuthSession && !sessionUser
+                    ? { pathname: "/auth/signin", query: { redirect: `/tour_packages/v/${pID}` } }
+                    : `/tour_packages/v/${pID}/book`
+                }
+              >
+                <Button colorScheme="green">Book Now</Button>
+              </Link>
+            </Box>
           </Box>
         </CardBody>
       </Card>

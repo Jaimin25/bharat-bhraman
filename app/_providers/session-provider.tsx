@@ -27,7 +27,7 @@ export default function SessionProvider({ children }: { children: React.ReactNod
   const [currentSession, setCurrentSession] = useState<SessionContextProps["currentSession"]>(null);
   const [isAuthSession, setIsAuthSession] = useState<boolean>(false);
 
-  const [isFetching, setIsFetching] = useState<boolean>(false);
+  const [isFetching, setIsFetching] = useState<boolean>(true);
 
   const [sessionUser, setSessionUser] = useState<SessionContextProps["sessionUser"] | null>(null);
 
@@ -72,6 +72,7 @@ export default function SessionProvider({ children }: { children: React.ReactNod
       const user = await getLoggedInUser();
 
       if (!user) {
+        setIsFetching(false);
         setIsAuthSession(false);
         setSessionUser(null);
         return;
