@@ -1,4 +1,5 @@
 import Image from "next/image";
+import parse from "html-react-parser";
 import { FaStar } from "react-icons/fa6";
 
 import { Box, Card, CardBody, Heading, ListItem, Stack, Text, UnorderedList } from "@chakra-ui/react";
@@ -133,13 +134,7 @@ export default function PackageDetailsSection({ packageDetails }: { packageDetai
         <CardBody>
           <Box className="space-y-3">
             <Heading size="md">Travel Validity</Heading>
-            <Box>
-              <Text>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi natus quos illum est repudiandae
-                aspernatur minus perferendis omnis consequuntur, sint autem ab facilis cum cumque laborum dolor corrupti
-                asperiores nostrum.
-              </Text>
-            </Box>
+            <Box className="text-sm">{parse(packageDetails.validity)}</Box>
           </Box>
         </CardBody>
       </Card>
