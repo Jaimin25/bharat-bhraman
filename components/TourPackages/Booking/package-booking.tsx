@@ -85,7 +85,7 @@ export default function PackageBookingComponent({ pID }: { pID: string }) {
 
   return (
     <>
-      <Box className="w-full sm:w-2/5">
+      <Box className="w-full sm:w-2/3 lg:w-2/5">
         <Card>
           <Formik
             initialValues={{
