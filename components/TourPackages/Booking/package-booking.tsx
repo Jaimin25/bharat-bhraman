@@ -2,6 +2,7 @@
 
 import useFetchDetails from "@/app/_hooks/useFetchDetails";
 import { useSession } from "@/app/_providers/session-provider";
+import PackageBookingSkeleton from "@/components/Skeleton/package-booking-skeleton";
 import {
   Box,
   Button,
@@ -22,7 +23,7 @@ export default function PackageBookingComponent({ pID }: { pID: string }) {
   const { resData, isFetching } = useFetchDetails<Package>("/api/tour_packages/details", pID);
 
   if (isFetching) {
-    return <Box>Loading...</Box>;
+    return <PackageBookingSkeleton />;
   }
 
   return (
