@@ -18,5 +18,5 @@ export default function RootAuthLayout({ children }: { children: React.ReactNode
     if (isAuthSession) return router.push(redirectUrl ? redirectUrl : "/user/dashboard");
   }, [isAuthSession, router, redirectUrl]);
 
-  return <Box className="flex h-full justify-center bg-black/5 p-4">{children}</Box>;
+  return <Box className="flex h-full justify-center bg-black/5 p-4 pt-20">{children}</Box>;
 }
