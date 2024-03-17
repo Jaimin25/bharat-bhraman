@@ -3,14 +3,17 @@ import { FaClock, FaIndianRupeeSign, FaLocationDot } from "react-icons/fa6";
 import { Box, Button, Card, CardBody, Stack, Text } from "@chakra-ui/react";
 
 export default function BookPackageSection({
+  pID,
   amount,
   duration,
   location,
 }: {
+  pID: string;
   amount: string;
   duration: string;
   location: string;
 }) {
+  console.log(pID);
   return (
     <Box>
       <Card>
