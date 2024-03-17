@@ -26,13 +26,13 @@ model Package {
   locations    String
   available    Boolean
   images       String[]
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @default(now())
   excluions    String[]
   hotelDetails String[]
   incluions    String[]
   iternary     String[]
   validity     String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now())
 }
 
 model BookingQuery {
