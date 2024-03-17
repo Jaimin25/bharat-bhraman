@@ -85,7 +85,7 @@ export default function PackageDetailsSection({ packageDetails }: { packageDetai
             <Box className="flex w-full flex-col items-center gap-4 lg:flex-row lg:items-start">
               <Box className="h-full sm:w-1/3 lg:w-1/2">
                 <Image
-                  src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Exterior_view_of_Taj_Mahal_Hotel%2C_New_Delhi.jpg"
+                  src={packageDetails.hotelDetails[1]}
                   height={500}
                   width={500}
                   alt="hotel"
