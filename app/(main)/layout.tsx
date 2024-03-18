@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 
 import HeaderSection from "@//components/Header/header";
@@ -27,7 +28,9 @@ export default function RootLayout({
         <Providers>
           <Box className="flex h-full flex-col">
             <HeaderSection />
-            <Box className="flex-1">{children}</Box>
+            <Suspense>
+              <Box className="flex-1">{children}</Box>
+            </Suspense>
             <FooterSection />
           </Box>
         </Providers>
