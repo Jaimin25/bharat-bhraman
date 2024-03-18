@@ -28,7 +28,7 @@ export default function PackageDetailsSection({ packageDetails }: { packageDetai
           <Box className="space-y-3">
             <Heading size="md">Package Overview</Heading>
             <Box>
-              <Text className="text-sm">{packageDetails.packageDesc}</Text>
+              <Text>{packageDetails.packageDesc}</Text>
             </Box>
           </Box>
         </CardBody>
@@ -45,12 +45,7 @@ export default function PackageDetailsSection({ packageDetails }: { packageDetai
             <Box className="p-2">
               <UnorderedList>
                 {packageDetails.incluions.map((value, index) => (
-                  <ListItem
-                    key={index}
-                    className="text-sm"
-                  >
-                    {value}
-                  </ListItem>
+                  <ListItem key={index}>{value}</ListItem>
                 ))}
               </UnorderedList>
             </Box>
@@ -67,12 +62,7 @@ export default function PackageDetailsSection({ packageDetails }: { packageDetai
             <Box className="p-2">
               <UnorderedList>
                 {packageDetails.excluions.map((value, index) => (
-                  <ListItem
-                    key={index}
-                    className="text-sm"
-                  >
-                    {value}
-                  </ListItem>
+                  <ListItem key={index}>{value}</ListItem>
                 ))}
               </UnorderedList>
             </Box>
@@ -103,9 +93,7 @@ export default function PackageDetailsSection({ packageDetails }: { packageDetai
                     <FaStar className="text-amber-500" />
                   </Box>
                 </Box>
-                {packageDetails.hotelDetails[2] !== '""' && (
-                  <Text className="text-sm">{packageDetails.hotelDetails[2]}</Text>
-                )}
+                {packageDetails.hotelDetails[2] !== '""' && <Text>{packageDetails.hotelDetails[2]}</Text>}
               </Box>
             </Box>
           </Box>
@@ -121,7 +109,7 @@ export default function PackageDetailsSection({ packageDetails }: { packageDetai
                   <Box key={index}>
                     <Box>
                       <Text className="text-lg font-semibold">Day {index + 1}</Text>
-                      <Text className="text-sm">{values}</Text>
+                      <Text>{values}</Text>
                     </Box>
                   </Box>
                 ))}
@@ -134,7 +122,7 @@ export default function PackageDetailsSection({ packageDetails }: { packageDetai
         <CardBody>
           <Box className="space-y-3">
             <Heading size="md">Travel Validity</Heading>
-            <Box className="text-sm">{parse(packageDetails.validity)}</Box>
+            <Box>{parse(packageDetails.validity)}</Box>
           </Box>
         </CardBody>
       </Card>
