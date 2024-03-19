@@ -44,7 +44,7 @@ export default function TourPackageCard({
             paddingTop="0px"
           >
             <Box>
-              <Text>{title}</Text>
+              <Text className="text-lg">{title}</Text>
             </Box>
 
             <Box className="items-center space-y-2 text-sm">
