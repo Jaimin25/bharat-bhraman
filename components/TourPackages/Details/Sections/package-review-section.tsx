@@ -26,11 +26,10 @@ export default function PackageReviewSection() {
                   </Box>
                   <Box className="flex-1">
                     <Text className="font-semibold">ABC</Text>
-                    <Text>&quot;Good&quot;</Text>
-                  </Box>
-                  <Box className="flex items-center gap-1">
-                    <FaStar className="text-amber-500" />
-                    <Text>4</Text>
+                    <Box className="flex items-center gap-1">
+                      <Text>&quot;Good&quot;</Text>-<Text>4</Text>
+                      <FaStar className="text-amber-500" />
+                    </Box>
                   </Box>
                 </Box>
               </Stack>
