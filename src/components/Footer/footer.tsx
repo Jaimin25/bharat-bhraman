@@ -1,8 +1,9 @@
+import NextLink from "next/link";
 import { FaFacebook, FaInstagram, FaLocationDot, FaPhone, FaWhatsapp, FaXTwitter } from "react-icons/fa6";
 import { IoMdMail } from "react-icons/io";
 import { TbDeviceLandlinePhone } from "react-icons/tb";
 
-import { Box, Divider, Heading, Stack, Text } from "@chakra-ui/react";
+import { Box, Divider, Heading, Link, Stack, Text } from "@chakra-ui/react";
 
 export default function FooterSection() {
   return (
@@ -11,7 +12,17 @@ export default function FooterSection() {
       <footer>
         <Box className="flex flex-col items-center space-y-4 bg-gray-900 px-4 py-8 text-center text-white">
           <Stack direction="column">
-            <Heading>Logo</Heading>
+            <Heading fontSize="32px">
+              <Link
+                as={NextLink}
+                href="/"
+                _hover={{
+                  underline: "none",
+                }}
+              >
+                BharatBhraman
+              </Link>
+            </Heading>
             <Stack
               justifyContent="center"
               direction="row"
