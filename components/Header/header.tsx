@@ -97,13 +97,15 @@ export default function HeaderSection() {
               <NextLink href="">
                 <MenuItem color="black">Contact Us</MenuItem>
               </NextLink>
-              <MenuItem color="black">
-                {isAuthSession ? (
-                  <NextLink href="/user/dashboard">Dashboard</NextLink>
-                ) : (
-                  <NextLink href="/auth/signin">SignIn</NextLink>
-                )}
-              </MenuItem>
+              {isAuthSession ? (
+                <NextLink href="/user/dashboard">
+                  <MenuItem color="black">Dashboard</MenuItem>
+                </NextLink>
+              ) : (
+                <NextLink href="/auth/signin">
+                  <MenuItem color="black">SignIn</MenuItem>
+                </NextLink>
+              )}
             </MenuList>
           </Menu>
         </Box>
