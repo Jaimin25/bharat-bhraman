@@ -39,7 +39,7 @@ export default function HeaderSection() {
     >
       <Box className="flex items-center p-2">
         <Box className="logo flex-1">
-          <Heading>
+          <Heading fontSize="32px">
             <Link
               as={NextLink}
               href="/"
@@ -47,7 +47,7 @@ export default function HeaderSection() {
                 underline: "none",
               }}
             >
-              Logo
+              BharatBhraman
             </Link>
           </Heading>
         </Box>
