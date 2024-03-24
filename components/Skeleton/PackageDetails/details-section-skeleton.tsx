@@ -13,7 +13,7 @@ export default function DetailsSectionSkeleton() {
               <Image
                 src=""
                 className="rounded-md"
-                height={400}
+                height={250}
                 width={500}
                 alt="img"
               />{" "}

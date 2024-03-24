@@ -41,7 +41,7 @@ export default function HeroSection() {
         }}
         className="z-50 flex flex-col items-center justify-center"
       >
-        <motion.p className="flex-1 bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text py-4 text-center text-xl font-bold text-transparent md:text-6xl">
+        <motion.p className="flex-1 bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text py-4 text-center text-3xl font-bold text-transparent md:text-6xl">
           Travel the horizons of India
         </motion.p>
 
@@ -50,7 +50,7 @@ export default function HeroSection() {
             y: ["5%", "-5%", "5%"],
           }}
           transition={bounceTransition}
-          className="relative mx-auto mt-4 rounded-full border border-sky-500/20 bg-sky-300/10 px-4 py-2 text-center text-white backdrop-blur-sm"
+          className="relative mx-auto mt-4 rounded-full border border-sky-500/20 px-4 py-2 text-center text-white backdrop-blur-sm"
         >
           <span>Explore now →</span>
           <div className="absolute inset-x-0  -bottom-px mx-auto h-px w-3/4 bg-gradient-to-r from-transparent via-sky-500 to-transparent" />
