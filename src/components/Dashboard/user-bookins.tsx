@@ -45,13 +45,17 @@ export default function UserBookings() {
 
   return (
     <Box className="space-y-4">
-      {bookings?.map((item) => (
-        <UserBookingsCard
-          key={item.id}
-          item={item}
-          setDeletedBookingId={setDeletedBookingId}
-        />
-      ))}
+      {bookings && bookings.length > 0 ? (
+        bookings.map((item) => (
+          <UserBookingsCard
+            key={item.id}
+            item={item}
+            setDeletedBookingId={setDeletedBookingId}
+          />
+        ))
+      ) : (
+        <Box>No Booking Query to Display</Box>
+      )}
     </Box>
   );
 }
