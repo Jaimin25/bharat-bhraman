@@ -50,6 +50,11 @@ export default function TourPackgesSidebar({ setQuery }: { setQuery: Dispatch<Se
                   type="number"
                   placeholder="5000"
                   roundedLeft={"none"}
+                  onChange={(e) => {
+                    if (setQuery) {
+                      setQuery(e.target.value);
+                    }
+                  }}
                 />
               </InputGroup>
             </Box>
