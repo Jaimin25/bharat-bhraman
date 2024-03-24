@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# [BharatBhraman - Tour & Travel Planner](https://bharatbhramanweb.vercel.app/)
+BharatBhraman is a platform for selecting and planning tours. Here, you can choose packages based on your favorite destination or budget.
 
-## Getting Started
+## Tech Stack
+- Next.js
+- ChakraUI, AceternityUI and TailwindCSS
+- Prisma & PostgreSQL
+- Appwrite (auth services)
 
-First, run the development server:
+## Setup
+1. Fork the repo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+2. Clone your GitHub forked repo:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```sh
+   git clone https://github.com/<github_username>/bharat-bhraman.git
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Go to the bharat-bhraman directory:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```sh
+   cd bharat-bhraman
+   ```
 
-## Learn More
+4. Install dependencies
 
-To learn more about Next.js, take a look at the following resources:
+   ```sh
+   npm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. Create a .env file in the root folder, refer to .env.example file.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+6. After setting up backend server. Run the app with the following:
 
-## Deploy on Vercel
+   ```sh
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Screenshots
+
+### Landing Page
+<img src="https://github.com/Jaimin25/bharat-bhraman/assets/65119631/7e706e9c-5703-4b62-a1c2-8af8334cd6b4" height="960" />
+
+### Tour Packages Page
+<img src="https://github.com/Jaimin25/bharat-bhraman/assets/65119631/b456b591-681f-426b-90b1-f0796fca13cd" height="568" width="690"/>
+
+### User Dashboard
+<img src="https://github.com/Jaimin25/bharat-bhraman/assets/65119631/19868a7b-8d7a-411d-a36c-c8e29a53c454" height="568" width="690"/>
