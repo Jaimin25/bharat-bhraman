@@ -31,7 +31,13 @@ export default function TourPackgesSidebar({ setQuery }: { setQuery: Dispatch<Se
             </Box>
             <Box className="space-y-2">
               <Text>Sort</Text>
-              <Select>
+              <Select
+                onChange={(e) => {
+                  if (setQuery) {
+                    setQuery(e.target.value);
+                  }
+                }}
+              >
                 <option>Lowest to highest</option>
                 <option>Highest to lowest</option>
               </Select>

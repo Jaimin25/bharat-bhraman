@@ -9,11 +9,18 @@ export default function usePackagesFilter(query: string, list: Package[]) {
 
   useEffect(() => {
     if (!list) return;
-    const filtered = list.filter(
-      (item) =>
-        item.packageTitle.toLowerCase().includes(query.toLowerCase()) ||
-        item.locations.toLowerCase().includes(query.toLowerCase()),
-    );
+    let filtered: Package[];
+    if (query.toLowerCase().includes("lowest to highest")) {
+      filtered = list.sort((a, b) => Number(a.price) - Number(b.price));
+    } else if (query.toLowerCase().includes("highest to lowest")) {
+      filtered = list.sort((a, b) => Number(b.price) - Number(a.price));
+    } else {
+      filtered = list.filter(
+        (item) =>
+          item.packageTitle.toLowerCase().includes(query.toLowerCase()) ||
+          item.locations.toLowerCase().includes(query.toLowerCase()),
+      );
+    }
     setFilteredList(filtered);
   }, [query, list]);
 
