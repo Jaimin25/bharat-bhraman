@@ -28,3 +28,27 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ statusCode: 400, message: "No Query Found!" });
   }
 }
+
+export async function DELETE(request: NextRequest) {
+  const { uid, email, sessionId, bookingId } = await request.json();
+
+  const authenticatedUser = await validateUser(uid, sessionId);
+
+  if (!authenticatedUser) {
+    return NextResponse.json({ statusCode: 401, message: "Uauthorized!" });
+  }
+
+  const deleteBooking = await prisma.bookingQuery.delete({
+    where: {
+      id: bookingId,
+      uid: uid,
+      email: email,
+    },
+  });
+
+  if (deleteBooking) {
+    return NextResponse.json({ statusCode: 200, message: "Booking Deleted!" });
+  } else {
+    return NextResponse.json({ statusCode: 500, message: "Internal Server Error" });
+  }
+}
