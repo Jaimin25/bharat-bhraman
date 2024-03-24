@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import useFetchDetails from "@/src/app/_hooks/useFetchDetails";
 import { useSession } from "@/src/app/_providers/session-provider";
-import { Box } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { BookingQuery } from "@prisma/client";
 
 import UserBookingsCard from "../Cards/user-bookings-card";
@@ -54,7 +54,9 @@ export default function UserBookings() {
           />
         ))
       ) : (
-        <Box>No Booking Query to Display</Box>
+        <Box>
+          <Text className="text-sm">No Booking Query to Display</Text>
+        </Box>
       )}
     </Box>
   );
