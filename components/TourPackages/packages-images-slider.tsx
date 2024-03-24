@@ -108,7 +108,7 @@ export const PackagesImageSlider = ({
         <AnimatePresence>
           <motion.img
             key={currentIndex}
-            src={loadedImages[currentIndex]}
+            src={images[currentIndex]}
             initial="initial"
             animate="visible"
             exit={"fadeOut"}

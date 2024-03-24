@@ -14,7 +14,7 @@ export default function PackagesList({ packages }: { packages: Package[] }) {
             locations={item.locations}
             duration={item.duration}
             price={item.price}
-            images={[item.images[Math.floor(Math.random() * item.images.length)]]}
+            images={[item.images[0]]}
           />
         </Box>
       ))}
