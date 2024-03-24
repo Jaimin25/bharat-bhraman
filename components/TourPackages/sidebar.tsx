@@ -3,7 +3,11 @@ import { FaSearch } from "react-icons/fa";
 
 import { Box, Card, CardBody, Heading, Input, InputGroup, InputLeftAddon, Select, Stack, Text } from "@chakra-ui/react";
 
-export default function TourPackgesSidebar({ setQuery }: { setQuery: Dispatch<SetStateAction<string>> | null }) {
+export default function TourPackgesSidebar({
+  setQuery,
+}: {
+  setQuery: Dispatch<SetStateAction<{ type: string; value: string }>> | null;
+}) {
   return (
     <Box className="w-full lg:w-1/4">
       <Card>
@@ -23,7 +27,7 @@ export default function TourPackgesSidebar({ setQuery }: { setQuery: Dispatch<Se
                   roundedLeft={"none"}
                   onChange={(e) => {
                     if (setQuery) {
-                      setQuery(e.target.value);
+                      setQuery({ type: "search", value: e.target.value });
                     }
                   }}
                 />
@@ -34,12 +38,12 @@ export default function TourPackgesSidebar({ setQuery }: { setQuery: Dispatch<Se
               <Select
                 onChange={(e) => {
                   if (setQuery) {
-                    setQuery(e.target.value);
+                    setQuery({ type: "sort", value: e.target.value });
                   }
                 }}
               >
-                <option>Lowest to highest</option>
                 <option>Highest to lowest</option>
+                <option>Lowest to highest</option>
               </Select>
             </Box>
             <Box className="space-y-2">
@@ -52,7 +56,7 @@ export default function TourPackgesSidebar({ setQuery }: { setQuery: Dispatch<Se
                   roundedLeft={"none"}
                   onChange={(e) => {
                     if (setQuery) {
-                      setQuery(e.target.value);
+                      setQuery({ type: "budget", value: e.target.value });
                     }
                   }}
                 />

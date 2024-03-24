@@ -13,7 +13,7 @@ import { Package } from "@prisma/client";
 export default function TourPackges() {
   const { isFetchingDetails, resData } = useFetchDetails<Package[]>("/api/tour_packages", [{ key: "", value: "" }]);
 
-  const [query, setQuery] = useState<string>("");
+  const [query, setQuery] = useState<{ type: string; value: string }>({ type: "", value: "" });
 
   const { filteredList } = usePackagesFilter(query, resData as Package[]);
 
