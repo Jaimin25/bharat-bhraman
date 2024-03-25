@@ -54,7 +54,7 @@ export default function HeroSection() {
             transition={bounceTransition}
             className="relative mx-auto mt-4 rounded-full border border-sky-500/20 px-4 py-2 text-center text-white backdrop-blur-sm"
           >
-            <span>Bhraman now →</span>
+            <span>Explore now →</span>
             <div className="absolute inset-x-0  -bottom-px mx-auto h-px w-3/4 bg-gradient-to-r from-transparent via-sky-500 to-transparent" />
           </motion.button>
         </NextLink>
