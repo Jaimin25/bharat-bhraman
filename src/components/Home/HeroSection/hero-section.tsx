@@ -1,4 +1,5 @@
 "use client";
+import NextLink from "next/link";
 import { motion } from "framer-motion";
 
 import { HeroSectionImageSlider } from "@/src/components/Home/HeroSection/images-slider";
@@ -45,16 +46,18 @@ export default function HeroSection() {
           Travel the horizons of India
         </motion.p>
 
-        <motion.button
-          animate={{
-            y: ["5%", "-5%", "5%"],
-          }}
-          transition={bounceTransition}
-          className="relative mx-auto mt-4 rounded-full border border-sky-500/20 px-4 py-2 text-center text-white backdrop-blur-sm"
-        >
-          <span>Explore now →</span>
-          <div className="absolute inset-x-0  -bottom-px mx-auto h-px w-3/4 bg-gradient-to-r from-transparent via-sky-500 to-transparent" />
-        </motion.button>
+        <NextLink href="/tour_packages">
+          <motion.button
+            animate={{
+              y: ["5%", "-5%", "5%"],
+            }}
+            transition={bounceTransition}
+            className="relative mx-auto mt-4 rounded-full border border-sky-500/20 px-4 py-2 text-center text-white backdrop-blur-sm"
+          >
+            <span>Bhraman now →</span>
+            <div className="absolute inset-x-0  -bottom-px mx-auto h-px w-3/4 bg-gradient-to-r from-transparent via-sky-500 to-transparent" />
+          </motion.button>
+        </NextLink>
       </motion.div>
     </HeroSectionImageSlider>
   );
